@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import Navbar from '@/components/layout/NavbarSection';
@@ -26,9 +26,9 @@ const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'), {
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
   return (
     <>
@@ -37,8 +37,8 @@ export default function Home() {
         <CustomCursor />
         <GlobalScene />
         <Navbar />
-        <main>
-          <Hero />
+        <main className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+          <Hero isLoaded={!isLoading} />
           <About />
           <Skills />
           <Projects />

@@ -283,6 +283,16 @@ main {
   display: inline-block;
 }
 
+.split-line {
+  overflow: hidden;
+}
+
+.hero-char {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
 /* Section Spacing */
 section {
   position: relative;
