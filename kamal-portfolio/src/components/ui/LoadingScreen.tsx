@@ -216,7 +216,11 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
   );
 }
 
-export default function LoadingScreen() {
+interface LoadingScreenProps {
+  onComplete?: () => void;
+}
+
+export default function LoadingScreen({ onComplete: externalOnComplete }: LoadingScreenProps) {
   const [isComplete, setIsComplete] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -224,8 +228,9 @@ export default function LoadingScreen() {
     setIsComplete(true);
     setTimeout(() => {
       setIsVisible(false);
+      externalOnComplete?.();
     }, 500);
-  }, []);
+  }, [externalOnComplete]);
 
   if (!isVisible) return null;
 

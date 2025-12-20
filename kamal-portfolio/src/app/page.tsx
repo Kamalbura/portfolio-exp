@@ -1,39 +1,52 @@
 'use client';
 
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import SmoothScroll from '@/components/layout/SmoothScroll';
+import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
+import Navbar from '@/components/layout/NavbarSection';
+import Footer from '@/components/layout/FooterSection';
 import Hero from '@/components/sections/Hero';
-import About from '@/components/sections/About';
-import Skills from '@/components/sections/Skills';
-import Projects from '@/components/sections/Projects';
-import Experience from '@/components/sections/Experience';
-import Contact from '@/components/sections/Contact';
-import Cursor from '@/components/ui/Cursor';
+import About from '@/components/sections/AboutSection';
+import Skills from '@/components/sections/SkillsSection';
+import Projects from '@/components/sections/ProjectsSection';
+import Experience from '@/components/sections/ExperienceSection';
+import Contact from '@/components/sections/ContactSection';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 
-const Scene = dynamic(() => import('@/components/three/Scene'), {
+const GlobalScene = dynamic(() => import('@/components/three/GlobalScene'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'), {
   ssr: false,
   loading: () => null,
 });
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <SmoothScroll>
-      <LoadingScreen />
-      <Cursor />
-      <Scene />
-      <Navbar />
-      <main className="relative noise-overlay">
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </main>
-      <Footer />
-    </SmoothScroll>
+    <>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <SmoothScrollProvider>
+        <CustomCursor />
+        <GlobalScene />
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
+        <Footer />
+      </SmoothScrollProvider>
+    </>
   );
 }
