@@ -1,350 +1,351 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useMemo, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SplitType from 'split-type';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skills = [
-  {
-    id: 'ai-ml',
-    category: 'AI & Machine Learning',
-    color: 'ai',
-    icon: '🧠',
-    items: [
-      { name: 'TensorFlow / PyTorch', level: 90 },
-      { name: 'Computer Vision', level: 85 },
-      { name: 'NLP / LLMs', level: 80 },
-      { name: 'Deep Learning', level: 88 },
-    ],
-    description: 'Building intelligent systems that learn, adapt, and evolve.',
-    gridClass: 'lg:col-span-2 lg:row-span-2',
-  },
-  {
-    id: 'iot',
-    category: 'IoT & Embedded',
-    color: 'iot',
-    icon: '📡',
-    items: [
-      { name: 'Arduino / ESP32', level: 92 },
-      { name: 'Raspberry Pi', level: 88 },
-      { name: 'MQTT / CoAP', level: 85 },
-      { name: 'Sensor Networks', level: 80 },
-    ],
-    description: 'Connecting the physical and digital worlds seamlessly.',
-    gridClass: 'lg:col-span-2',
-  },
-  {
-    id: 'systems',
-    category: 'Systems & DevOps',
-    color: 'systems',
-    icon: '⚙️',
-    items: [
-      { name: 'Linux / Unix', level: 85 },
-      { name: 'Docker / K8s', level: 78 },
-      { name: 'Cloud (AWS/GCP)', level: 82 },
-    ],
-    description: 'Designing scalable, resilient infrastructure.',
-    gridClass: '',
-  },
-  {
-    id: 'languages',
-    category: 'Languages',
-    color: 'ai',
-    icon: '💻',
-    items: [
-      { name: 'Python', level: 95 },
-      { name: 'JavaScript/TypeScript', level: 88 },
-      { name: 'C/C++', level: 82 },
-      { name: 'Rust', level: 70 },
-    ],
-    description: 'Polyglot approach to problem-solving.',
-    gridClass: '',
-  },
-  {
-    id: 'web',
-    category: 'Web Development',
-    color: 'iot',
-    icon: '🌐',
-    items: [
-      { name: 'React / Next.js', level: 90 },
-      { name: 'Node.js', level: 85 },
-      { name: 'Three.js / WebGL', level: 75 },
-    ],
-    description: 'Crafting immersive digital experiences.',
-    gridClass: 'lg:col-span-2',
-  },
+// Deep engineering vocabulary - no generic AI copy
+const skillWords = [
+  // AI / Machine Learning
+  { text: 'PyTorch', category: 'ai', weight: 5 },
+  { text: 'TensorFlow', category: 'ai', weight: 4 },
+  { text: 'Neural Networks', category: 'ai', weight: 5 },
+  { text: 'Transformers', category: 'ai', weight: 4 },
+  { text: 'CUDA', category: 'ai', weight: 3 },
+  { text: 'Computer Vision', category: 'ai', weight: 4 },
+  { text: 'CNNs', category: 'ai', weight: 3 },
+  { text: 'GANs', category: 'ai', weight: 3 },
+  { text: 'Reinforcement Learning', category: 'ai', weight: 4 },
+  { text: 'NLP', category: 'ai', weight: 4 },
+  { text: 'LLMs', category: 'ai', weight: 5 },
+  { text: 'Hugging Face', category: 'ai', weight: 3 },
+  { text: 'Scikit-learn', category: 'ai', weight: 3 },
+  { text: 'OpenCV', category: 'ai', weight: 3 },
+  { text: 'YOLO', category: 'ai', weight: 3 },
+  { text: 'Attention', category: 'ai', weight: 3 },
+  { text: 'Backpropagation', category: 'ai', weight: 2 },
+  { text: 'Gradient Descent', category: 'ai', weight: 2 },
+  { text: 'Feature Extraction', category: 'ai', weight: 2 },
+  { text: 'Model Quantization', category: 'ai', weight: 2 },
+  
+  // IoT / Embedded Systems
+  { text: 'MQTT', category: 'iot', weight: 4 },
+  { text: 'ESP32', category: 'iot', weight: 5 },
+  { text: 'Arduino', category: 'iot', weight: 4 },
+  { text: 'Raspberry Pi', category: 'iot', weight: 4 },
+  { text: 'LoRaWAN', category: 'iot', weight: 3 },
+  { text: 'Zigbee', category: 'iot', weight: 3 },
+  { text: 'Edge Computing', category: 'iot', weight: 4 },
+  { text: 'Sensor Fusion', category: 'iot', weight: 3 },
+  { text: 'I2C', category: 'iot', weight: 2 },
+  { text: 'SPI', category: 'iot', weight: 2 },
+  { text: 'UART', category: 'iot', weight: 2 },
+  { text: 'PWM', category: 'iot', weight: 2 },
+  { text: 'FreeRTOS', category: 'iot', weight: 3 },
+  { text: 'Embedded C', category: 'iot', weight: 3 },
+  { text: 'CoAP', category: 'iot', weight: 2 },
+  { text: 'OTA Updates', category: 'iot', weight: 2 },
+  { text: 'GPIO', category: 'iot', weight: 2 },
+  { text: 'Bluetooth LE', category: 'iot', weight: 3 },
+  { text: 'WiFi Mesh', category: 'iot', weight: 3 },
+  
+  // Systems / DevOps / Languages
+  { text: 'Python', category: 'systems', weight: 5 },
+  { text: 'TypeScript', category: 'systems', weight: 4 },
+  { text: 'Rust', category: 'systems', weight: 3 },
+  { text: 'C++', category: 'systems', weight: 4 },
+  { text: 'Linux', category: 'systems', weight: 4 },
+  { text: 'Docker', category: 'systems', weight: 4 },
+  { text: 'Kubernetes', category: 'systems', weight: 3 },
+  { text: 'WebGL', category: 'systems', weight: 4 },
+  { text: 'Three.js', category: 'systems', weight: 4 },
+  { text: 'React', category: 'systems', weight: 4 },
+  { text: 'Next.js', category: 'systems', weight: 4 },
+  { text: 'Node.js', category: 'systems', weight: 3 },
+  { text: 'PostgreSQL', category: 'systems', weight: 3 },
+  { text: 'Redis', category: 'systems', weight: 2 },
+  { text: 'GraphQL', category: 'systems', weight: 3 },
+  { text: 'REST APIs', category: 'systems', weight: 3 },
+  { text: 'WebSockets', category: 'systems', weight: 3 },
+  { text: 'Git', category: 'systems', weight: 3 },
+  { text: 'CI/CD', category: 'systems', weight: 3 },
+  { text: 'AWS', category: 'systems', weight: 3 },
+  { text: 'GCP', category: 'systems', weight: 2 },
+  { text: 'Shell', category: 'systems', weight: 2 },
+  { text: 'WebGPU', category: 'systems', weight: 3 },
 ];
 
-const colorMap = {
-  ai: {
-    gradient: 'from-[#00d4ff] to-[#0066ff]',
-    glow: 'hover:shadow-[0_0_60px_-15px_rgba(0,212,255,0.4)]',
-    text: 'text-[#00d4ff]',
-    bar: 'bg-gradient-to-r from-[#00d4ff] to-[#0066ff]',
-    border: 'hover:border-[#00d4ff]/30',
-    bg: 'bg-[#00d4ff]/5',
-  },
-  iot: {
-    gradient: 'from-[#00ffc8] to-[#00d4a0]',
-    glow: 'hover:shadow-[0_0_60px_-15px_rgba(0,255,200,0.4)]',
-    text: 'text-[#00ffc8]',
-    bar: 'bg-gradient-to-r from-[#00ffc8] to-[#00d4a0]',
-    border: 'hover:border-[#00ffc8]/30',
-    bg: 'bg-[#00ffc8]/5',
-  },
-  systems: {
-    gradient: 'from-[#8b5cf6] to-[#6d28d9]',
-    glow: 'hover:shadow-[0_0_60px_-15px_rgba(139,92,246,0.4)]',
-    text: 'text-[#8b5cf6]',
-    bar: 'bg-gradient-to-r from-[#8b5cf6] to-[#6d28d9]',
-    border: 'hover:border-[#8b5cf6]/30',
-    bg: 'bg-[#8b5cf6]/5',
-  },
+const categoryColors = {
+  ai: { color: '#00d4ff', glow: '0 0 40px rgba(0, 212, 255, 0.9)', label: 'AI/ML' },
+  iot: { color: '#00ffc8', glow: '0 0 40px rgba(0, 255, 200, 0.9)', label: 'IoT' },
+  systems: { color: '#8b5cf6', glow: '0 0 40px rgba(139, 92, 246, 0.9)', label: 'Systems' },
 };
+
+interface WordData {
+  text: string;
+  category: 'ai' | 'iot' | 'systems';
+  weight: number;
+  fontSize: number;
+  baseOpacity: number;
+  rotation: number;
+}
+
+// Deterministic seeded random for consistent SSR/CSR
+function seededRandom(seed: number): () => number {
+  return () => {
+    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+    return seed / 0x7fffffff;
+  };
+}
 
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const barsRef = useRef<Map<string, HTMLDivElement>>(new Map());
+  const containerRef = useRef<HTMLDivElement>(null);
+  const wordsRef = useRef<Map<number, HTMLSpanElement>>(new Map());
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
-  const timelinesRef = useRef<gsap.core.Timeline[]>([]);
-
-  const setBarRef = useCallback((el: HTMLDivElement | null, key: string) => {
-    if (el) {
-      barsRef.current.set(key, el);
-    } else {
-      barsRef.current.delete(key);
-    }
+  
+  // Generate word positions with useMemo for performance
+  const wordData = useMemo<WordData[]>(() => {
+    const random = seededRandom(42);
+    
+    return skillWords.map((word) => {
+      // Calculate font size based on weight (1rem to 4rem)
+      const fontSize = 0.9 + (word.weight / 5) * 3;
+      
+      // Base opacity varies by depth (0.06 to 0.2)
+      const baseOpacity = 0.06 + random() * 0.14;
+      
+      return {
+        ...word,
+        category: word.category as 'ai' | 'iot' | 'systems',
+        fontSize,
+        baseOpacity,
+        rotation: (random() - 0.5) * 4,
+      };
+    });
   }, []);
 
-  const initAnimations = useCallback(() => {
-    const section = sectionRef.current;
-    const heading = headingRef.current;
-    const grid = gridRef.current;
-
-    if (!section) return;
-
-    // Cleanup
-    scrollTriggersRef.current.forEach(st => st.kill());
-    timelinesRef.current.forEach(tl => tl.kill());
-    scrollTriggersRef.current = [];
-    timelinesRef.current = [];
-
-    // Heading split text animation
-    let headingSplit: SplitType | null = null;
-    if (heading) {
-      headingSplit = new SplitType(heading, {
-        types: 'lines,words',
-        lineClass: 'overflow-hidden',
-      });
-
-      if (headingSplit.words) {
-        gsap.set(headingSplit.words, { y: '100%', opacity: 0 });
-
-        const headingSt = ScrollTrigger.create({
-          trigger: heading,
-          start: 'top 85%',
-          onEnter: () => {
-            gsap.to(headingSplit!.words, {
-              y: '0%',
-              opacity: 1,
-              duration: 1,
-              stagger: 0.04,
-              ease: 'power3.out',
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(headingSplit!.words, {
-              y: '100%',
-              opacity: 0,
-              duration: 0.5,
-            });
-          },
-        });
-        scrollTriggersRef.current.push(headingSt);
-      }
+  const setWordRef = useCallback((el: HTMLSpanElement | null, index: number) => {
+    if (el) {
+      wordsRef.current.set(index, el);
+    } else {
+      wordsRef.current.delete(index);
     }
-
-    // Bento grid items staggered reveal
-    if (grid) {
-      const items = grid.querySelectorAll('.bento-skill-card');
-      items.forEach((item, i) => {
-        gsap.set(item, { 
-          opacity: 0, 
-          y: 60, 
-          scale: 0.95,
-        });
-
-        const itemSt = ScrollTrigger.create({
-          trigger: item,
-          start: 'top 90%',
-          onEnter: () => {
-            gsap.to(item, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.8,
-              delay: i * 0.08,
-              ease: 'power3.out',
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(item, {
-              opacity: 0,
-              y: 60,
-              scale: 0.95,
-              duration: 0.4,
-            });
-          },
-        });
-        scrollTriggersRef.current.push(itemSt);
-      });
-    }
-
-    // Progress bars animation
-    barsRef.current.forEach((bar, key) => {
-      const level = bar.dataset.level;
-      gsap.set(bar, { width: '0%' });
-
-      const barSt = ScrollTrigger.create({
-        trigger: bar,
-        start: 'top 95%',
-        onEnter: () => {
-          gsap.to(bar, {
-            width: `${level}%`,
-            duration: 1.2,
-            delay: 0.3,
-            ease: 'power3.out',
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(bar, { width: '0%', duration: 0.4 });
-        },
-      });
-      scrollTriggersRef.current.push(barSt);
-    });
-
-    return () => {
-      headingSplit?.revert();
-    };
   }, []);
 
   useEffect(() => {
-    const cleanup = initAnimations();
+    const section = sectionRef.current;
+    const container = containerRef.current;
+    if (!section || !container) return;
+
+    // Cleanup
+    scrollTriggersRef.current.forEach(st => st.kill());
+    scrollTriggersRef.current = [];
+
+    const words = Array.from(wordsRef.current.values());
+    
+    // Set initial states
+    words.forEach((word, i) => {
+      const data = wordData[i];
+      if (!data) return;
+      gsap.set(word, {
+        opacity: 0,
+        y: 60 + Math.random() * 40,
+      });
+    });
+
+    // Entrance animation - staggered reveal
+    const entranceSt = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 80%',
+      onEnter: () => {
+        words.forEach((word, i) => {
+          const data = wordData[i];
+          if (!data) return;
+          gsap.to(word, {
+            opacity: data.baseOpacity,
+            y: 0,
+            duration: 1 + Math.random() * 0.5,
+            delay: i * 0.02,
+            ease: 'power3.out',
+          });
+        });
+      },
+      onLeaveBack: () => {
+        words.forEach((word) => {
+          gsap.to(word, { opacity: 0, y: 40, duration: 0.4 });
+        });
+      },
+    });
+    scrollTriggersRef.current.push(entranceSt);
+
+    // The "Scanning Light" effect - words glow as they enter viewport center
+    const scanTrigger = ScrollTrigger.create({
+      trigger: section,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.3,
+      onUpdate: () => {
+        const viewportCenter = window.innerHeight / 2;
+        
+        words.forEach((word, i) => {
+          const data = wordData[i];
+          if (!data || !word) return;
+          
+          const wordRect = word.getBoundingClientRect();
+          const wordCenter = wordRect.top + wordRect.height / 2;
+          
+          // Distance from viewport center (normalized 0-1)
+          const distanceFromCenter = Math.abs(wordCenter - viewportCenter) / (window.innerHeight * 0.5);
+          const proximity = Math.max(0, 1 - distanceFromCenter);
+          
+          // Enhanced glow for words near center
+          const glowIntensity = proximity * proximity * proximity; // Cubic falloff for tighter focus
+          const targetOpacity = data.baseOpacity + (1 - data.baseOpacity) * glowIntensity * 0.9;
+          const targetScale = 1 + glowIntensity * 0.06;
+          
+          gsap.to(word, {
+            opacity: targetOpacity,
+            scale: targetScale,
+            duration: 0.2,
+            ease: 'power1.out',
+            overwrite: 'auto',
+          });
+        });
+      }
+    });
+    scrollTriggersRef.current.push(scanTrigger);
 
     return () => {
-      cleanup?.();
       scrollTriggersRef.current.forEach(st => st.kill());
-      timelinesRef.current.forEach(tl => tl.kill());
       scrollTriggersRef.current = [];
-      timelinesRef.current = [];
     };
-  }, [initAnimations]);
+  }, [wordData]);
+
+  // Hover handlers
+  const handleWordHover = useCallback((index: number) => {
+    const word = wordsRef.current.get(index);
+    const data = wordData[index];
+    if (!word || !data) return;
+
+    const colors = categoryColors[data.category];
+    
+    gsap.to(word, {
+      color: colors.color,
+      textShadow: colors.glow,
+      scale: 1.2,
+      opacity: 1,
+      duration: 0.25,
+      ease: 'power2.out',
+    });
+
+    // Dispatch custom event for cursor
+    window.dispatchEvent(new CustomEvent('skillHover', {
+      detail: { category: colors.label, color: colors.color }
+    }));
+  }, [wordData]);
+
+  const handleWordLeave = useCallback((index: number) => {
+    const word = wordsRef.current.get(index);
+    const data = wordData[index];
+    if (!word || !data) return;
+
+    gsap.to(word, {
+      color: '#f4f4f5',
+      textShadow: 'none',
+      scale: 1,
+      opacity: data.baseOpacity,
+      duration: 0.35,
+      ease: 'power2.out',
+    });
+
+    // Clear cursor
+    window.dispatchEvent(new CustomEvent('skillHover', {
+      detail: { category: '', color: '' }
+    }));
+  }, [wordData]);
 
   return (
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-32 lg:py-48 overflow-hidden"
+      className="relative min-h-[140vh] py-32 lg:py-40 overflow-hidden"
+      data-section="skills"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#00d4ff]/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-[#8b5cf6]/5 rounded-full blur-[150px]" />
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0b0d10] to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0b0d10] to-transparent z-10" />
+        
+        {/* Central scanning light beam */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_30%_at_50%_50%,rgba(0,212,255,0.04)_0%,transparent_60%)] pointer-events-none" />
       </div>
 
-      <div className="container relative">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <span className="section-label inline-flex items-center gap-3 justify-center mb-4">
-            <span className="w-8 h-px bg-[#00d4ff]" />
-            Expertise
-            <span className="w-8 h-px bg-[#00d4ff]" />
+      {/* Section Header - Asymmetric positioning */}
+      <div className="container relative z-20 mb-20">
+        <div className="max-w-2xl">
+          <span className="section-label inline-flex items-center gap-3 mb-4">
+            <span className="w-12 h-px bg-gradient-to-r from-[#00d4ff] to-transparent" />
+            Technical Depth
           </span>
-          <h2 ref={headingRef} className="section-title">
-            Skills & <span className="text-gradient">Technologies</span>
+          <h2 className="section-title text-left">
+            The Stack That
+            <br />
+            <span className="text-gradient">Powers Innovation</span>
           </h2>
-          <p className="section-description mx-auto mt-6 max-w-2xl">
-            A diverse and ever-expanding toolkit for building the future of technology.
-            From low-level embedded systems to high-level AI architectures.
-          </p>
-        </div>
-
-        {/* Bento Grid */}
-        <div 
-          ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-[minmax(200px,auto)]"
-        >
-          {skills.map((skill) => {
-            const colors = colorMap[skill.color as keyof typeof colorMap];
-
-            return (
-              <div
-                key={skill.id}
-                className={`bento-skill-card group relative glass-card rounded-2xl p-6 transition-all duration-500 ${skill.gridClass} ${colors.glow} ${colors.border}`}
-              >
-                {/* Border beam on hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 border-beam pointer-events-none" />
-                
-                {/* Icon badge */}
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${colors.bg} mb-4`}>
-                  <span className="text-2xl">{skill.icon}</span>
-                </div>
-
-                {/* Category */}
-                <h3 className={`text-xl font-semibold mb-2 ${colors.text}`}>
-                  {skill.category}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#71717a] text-sm mb-6 leading-relaxed">
-                  {skill.description}
-                </p>
-
-                {/* Skills list with progress bars */}
-                <div className="space-y-4 mt-auto">
-                  {skill.items.map((item, itemIndex) => {
-                    const barKey = `${skill.id}-${itemIndex}`;
-                    return (
-                      <div key={item.name}>
-                        <div className="flex justify-between mb-2">
-                          <span className="text-sm text-[#e4e4e7]">{item.name}</span>
-                          <span className="text-xs text-[#71717a] tabular-nums">{item.level}%</span>
-                        </div>
-                        <div className="h-1.5 bg-[#1a1d24] rounded-full overflow-hidden">
-                          <div
-                            ref={(el) => setBarRef(el, barKey)}
-                            data-level={item.level}
-                            className={`h-full rounded-full ${colors.bar}`}
-                            style={{ width: 0 }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Subtle gradient overlay on hover */}
-                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none`} />
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Additional Context */}
-        <div className="mt-16 text-center">
-          <p className="text-[#52525b] text-sm">
-            Always learning, always building. Currently exploring{' '}
-            <span className="text-[#00d4ff]">Reinforcement Learning</span>,{' '}
-            <span className="text-[#00ffc8]">Edge Computing</span>, and{' '}
-            <span className="text-[#8b5cf6]">WebGPU</span>.
+          <p className="section-description mt-6 text-left">
+            A constellation of technologies mastered through building real systems—
+            from neural architectures to embedded firmware, from cloud infrastructure 
+            to real-time graphics.
           </p>
         </div>
       </div>
+
+      {/* The Wall of Words */}
+      <div 
+        ref={containerRef}
+        className="relative w-full min-h-[70vh] px-4 md:px-8 lg:px-12"
+      >
+        <div className="word-wall relative w-full flex flex-wrap items-center justify-center gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-5 lg:gap-x-10 lg:gap-y-6 max-w-[1600px] mx-auto">
+          {wordData.map((word, index) => (
+            <span
+              key={`${word.text}-${index}`}
+              ref={(el) => setWordRef(el, index)}
+              className="skill-word relative cursor-default select-none font-semibold tracking-tight text-[#f4f4f5] transition-colors will-change-transform whitespace-nowrap"
+              style={{
+                fontSize: `clamp(${word.fontSize * 0.5}rem, ${word.fontSize * 0.8}vw, ${word.fontSize}rem)`,
+                transform: `rotate(${word.rotation}deg)`,
+              }}
+              data-category={word.category}
+              data-cursor-text={categoryColors[word.category].label}
+              onMouseEnter={() => handleWordHover(index)}
+              onMouseLeave={() => handleWordLeave(index)}
+            >
+              {word.text}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Category Legend - Bottom right */}
+      <div className="absolute bottom-12 right-8 z-20 hidden lg:flex flex-col gap-3">
+        {Object.entries(categoryColors).map(([key, value]) => (
+          <div key={key} className="flex items-center gap-3 text-xs">
+            <span 
+              className="w-2 h-2 rounded-full"
+              style={{ backgroundColor: value.color, boxShadow: `0 0 10px ${value.color}` }}
+            />
+            <span className="text-[#52525b] uppercase tracking-widest font-medium">{value.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Floating accent lights */}
+      <div className="absolute top-1/3 -left-40 w-80 h-80 bg-[#00d4ff]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 -right-40 w-80 h-80 bg-[#8b5cf6]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-2/3 left-1/4 w-60 h-60 bg-[#00ffc8]/3 rounded-full blur-[100px] pointer-events-none" />
     </section>
   );
 }

@@ -527,3 +527,108 @@ input::placeholder, textarea::placeholder {
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
 }
+
+/* ========================================
+   WALL OF WORDS - Skill Typography Section
+   ======================================== */
+
+.skill-word {
+  display: inline-block;
+  position: relative;
+  cursor: default;
+  transition: opacity 0.6s var(--ease-out-expo), 
+              color 0.3s ease, 
+              text-shadow 0.3s ease,
+              transform 0.3s var(--ease-out-expo);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+.skill-word:hover {
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+/* Skill Category Color Classes */
+.skill-word.skill-ai {
+  --skill-color: var(--color-ai);
+  --skill-glow: rgba(0, 212, 255, 0.6);
+}
+
+.skill-word.skill-iot {
+  --skill-color: var(--color-iot);
+  --skill-glow: rgba(0, 255, 200, 0.6);
+}
+
+.skill-word.skill-systems {
+  --skill-color: var(--color-systems);
+  --skill-glow: rgba(139, 92, 246, 0.6);
+}
+
+/* Spotlight/Scanning Light Effect - Applied via JS */
+.skill-word.is-visible {
+  color: var(--skill-color);
+  text-shadow: 
+    0 0 20px var(--skill-glow),
+    0 0 40px var(--skill-glow),
+    0 0 60px var(--skill-glow);
+}
+
+/* Word Wall Container */
+.skill-wall {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  padding: 4rem 2rem;
+  line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .skill-wall {
+    gap: 0.4rem 1rem;
+    padding: 2rem 1rem;
+  }
+  
+  .skill-word {
+    font-size: 0.85em !important;
+  }
+}
+
+/* Section Indicator Dots */
+.wall-section-label {
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  white-space: nowrap;
+}
+
+/* Staggered Entry Animation */
+@keyframes wordReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(4px);
+  }
+  to {
+    opacity: var(--target-opacity, 0.15);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.skill-word.animate-in {
+  animation: wordReveal 0.8s var(--ease-out-expo) forwards;
+  animation-delay: var(--delay, 0ms);
+}
