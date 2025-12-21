@@ -30,6 +30,7 @@
   /* Spacing Scale */
   --section-padding: clamp(5rem, 12vw, 10rem);
   --container-max: 1400px;
+  --container-gap: 0.75rem;
   
   /* Transitions */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -308,9 +309,26 @@ section {
 }
 
 /* Small default spacing for direct children inside containers to avoid collapsed/zero margins */
-.container > * {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
+.container > * + * {
+  /* add vertical rhythm between sibling children only to avoid
+     overriding components that expect reset margins */
+  margin-top: var(--container-gap);
+}
+
+/* Respect user preference for reduced motion: disable heavy animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-float,
+  .animate-pulse-glow,
+  .border-beam::before,
+  .magnetic-btn:hover::before {
+    animation: none !important;
+  }
 }
 
 /* Bento Grid */
