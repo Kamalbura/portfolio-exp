@@ -1,8 +1,9 @@
 'use client';
 
-import { useRef, useMemo, Suspense } from 'react';
+import { useRef, useMemo, Suspense, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Environment, Float, MeshDistortMaterial } from '@react-three/drei';
+import { Environment, Float } from '@react-three/drei';
+import CoreOrb from './CoreOrb';
 import * as THREE from 'three';
 import { useSmoothScroll } from '../providers/SmoothScrollProvider';
 
@@ -74,77 +75,29 @@ function ParticleField() {
   );
 }
 
-// Core Orb Component with Distortion
-function CoreOrb() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const { scrollProgress } = useSmoothScroll();
-  const mouseRef = useRef({ x: 0, y: 0 });
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Mouse influence
-      const targetX = (state.pointer.x * 0.3);
-      const targetY = (state.pointer.y * 0.3);
-      mouseRef.current.x += (targetX - mouseRef.current.x) * 0.05;
-      mouseRef.current.y += (targetY - mouseRef.current.y) * 0.05;
-
-      meshRef.current.rotation.x = mouseRef.current.y + state.clock.elapsedTime * 0.1;
-      meshRef.current.rotation.y = mouseRef.current.x + state.clock.elapsedTime * 0.15;
-
-      // Scale based on scroll
-      const scale = 1 + Math.sin(scrollProgress * Math.PI) * 0.2;
-      meshRef.current.scale.setScalar(scale);
-    }
-  });
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
-      <mesh ref={meshRef}>
-        <icosahedronGeometry args={[2.5, 64]} />
-        <MeshDistortMaterial
-          color="#00d4ff"
-          emissive="#001a33"
-          emissiveIntensity={0.5}
-          roughness={0.2}
-          metalness={0.8}
-          distort={0.4}
-          speed={2}
-          transparent
-          opacity={0.9}
-        />
-      </mesh>
-      
-      {/* Inner glow */}
-      <mesh scale={2.2}>
-        <sphereGeometry args={[1, 32, 32]} />
-        <meshBasicMaterial
-          color="#00d4ff"
-          transparent
-          opacity={0.1}
-          side={THREE.BackSide}
-        />
-      </mesh>
-
-      {/* Outer rings */}
-      {[0, 1, 2].map((i) => (
-        <mesh key={i} rotation={[Math.PI / 2 + i * 0.3, i * 0.5, 0]}>
-          <torusGeometry args={[3.5 + i * 0.5, 0.02, 16, 100]} />
-          <meshBasicMaterial
-            color={i === 0 ? '#00d4ff' : i === 1 ? '#00ffc8' : '#8b5cf6'}
-            transparent
-            opacity={0.3 - i * 0.08}
-          />
-        </mesh>
-      ))}
-    </Float>
-  );
-}
+// Use externally defined CoreOrb (upgraded crystalline transmission material)
 
 // Camera Controller
 function CameraController() {
   const { camera } = useThree();
   const { scrollProgress } = useSmoothScroll();
   const targetRef = useRef({ x: 0, y: 0, z: 30 });
+  const overrideRef = useRef<{x:number;y:number;z:number}|null>(null);
+
+  // Listen for skill hover events to trigger camera zoom-in narrative
+  useEffect(() => {
+    const onSkill = (e: Event) => {
+      const ev = e as CustomEvent<{ category: string }>;
+      if (ev.detail?.category) {
+        // zoom in for dramatic illumination
+        overrideRef.current = { x: -6, y: 0, z: 12 };
+      } else {
+        overrideRef.current = null;
+      }
+    };
+    window.addEventListener('skillHover', onSkill as EventListener);
+    return () => window.removeEventListener('skillHover', onSkill as EventListener);
+  }, []);
 
   useFrame(() => {
     // Camera narrative based on scroll
@@ -167,10 +120,13 @@ function CameraController() {
       targetRef.current = { x: 0, y: 5, z: 28 };
     }
 
+    // If override is active, use it
+    const activeTarget = overrideRef.current ?? targetRef.current;
+
     // Smooth camera movement
-    camera.position.x += (targetRef.current.x - camera.position.x) * 0.02;
-    camera.position.y += (targetRef.current.y - camera.position.y) * 0.02;
-    camera.position.z += (targetRef.current.z - camera.position.z) * 0.02;
+    camera.position.x += (activeTarget.x - camera.position.x) * 0.04;
+    camera.position.y += (activeTarget.y - camera.position.y) * 0.04;
+    camera.position.z += (activeTarget.z - camera.position.z) * 0.04;
     camera.lookAt(0, 0, 0);
   });
 
@@ -193,7 +149,9 @@ function SceneContent() {
       />
       
       <ParticleField />
-      <CoreOrb />
+      <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
+        <CoreOrb />
+      </Float>
       <CameraController />
       
       <Environment preset="night" />

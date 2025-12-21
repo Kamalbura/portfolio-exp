@@ -307,6 +307,12 @@ section {
   padding: 0 clamp(1.5rem, 5vw, 4rem);
 }
 
+/* Small default spacing for direct children inside containers to avoid collapsed/zero margins */
+.container > * {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 /* Bento Grid */
 .bento-grid {
   display: grid;
@@ -507,6 +513,56 @@ input:focus, textarea:focus {
 
 input::placeholder, textarea::placeholder {
   color: var(--color-text-muted);
+}
+
+/* Terminal-style inputs for ContactSection */
+.terminal-label {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+}
+
+.terminal-field {
+  position: relative;
+  padding-bottom: 0.5rem;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: box-shadow 0.35s var(--ease-out-expo), background 0.25s ease;
+}
+
+.terminal-field input,
+.terminal-field textarea {
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0;
+  color: var(--color-text-primary);
+}
+
+.terminal-field::after {
+  content: '';
+  position: absolute;
+  left: -40%;
+  bottom: -1px;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-ai), transparent);
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.terminal-field:focus-within {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.terminal-field:focus-within::after {
+  animation: beamTravel 1s linear forwards;
+  opacity: 1;
+}
+
+@keyframes beamTravel {
+  from { left: -40%; width: 40%; }
+  50% { left: 20%; width: 60%; }
+  to { left: 120%; width: 40%; opacity: 0; }
 }
 
 /* Floating Animation */

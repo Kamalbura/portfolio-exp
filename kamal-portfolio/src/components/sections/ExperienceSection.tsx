@@ -10,59 +10,39 @@ gsap.registerPlugin(ScrollTrigger);
 const experiences = [
   {
     id: 1,
-    role: 'AI Research Intern',
-    company: 'TechCorp Innovation Labs',
-    period: 'Jun 2024 – Present',
-    description:
-      'Leading research on multimodal AI systems. Developed a novel architecture for vision-language models achieving 15% improvement over baseline. Published findings at top-tier conferences.',
+    role: 'B.Tech Student',
+    company: 'Undergraduate Program',
+    period: '2022 - 2026',
+    description: 'Pursuing B.Tech with focus on embedded systems and AI research.',
     highlights: [
-      'Developed custom transformer architectures',
-      'Optimized model inference by 40%',
-      'Mentored 3 junior researchers',
-    ],
-    color: 'ai',
-  },
-  {
-    id: 2,
-    role: 'IoT Solutions Developer',
-    company: 'SmartCity Innovations',
-    period: 'Jan 2024 – May 2024',
-    description:
-      'Designed and deployed IoT infrastructure for smart city pilot program. Created real-time traffic monitoring system serving 50,000+ daily users.',
-    highlights: [
-      'Architected scalable MQTT broker cluster',
-      'Reduced latency by 60% through edge computing',
-      'Integrated with municipal traffic systems',
-    ],
-    color: 'iot',
-  },
-  {
-    id: 3,
-    role: 'Full Stack Developer',
-    company: 'Startup Accelerator',
-    period: 'Jun 2023 – Dec 2023',
-    description:
-      'Built MVPs for 5+ early-stage startups. Specialized in real-time applications and data visualization dashboards.',
-    highlights: [
-      'Delivered 5 production applications',
-      'Implemented CI/CD pipelines',
-      'Reduced time-to-market by 30%',
+      'Specialization in embedded systems and AI',
+      'Coursework in robotics, signals, and ML',
     ],
     color: 'systems',
   },
   {
-    id: 4,
-    role: 'Research Assistant',
-    company: 'Vasavi College of Engineering',
-    period: 'Aug 2022 – Present',
-    description:
-      'Contributing to multiple research projects in AI and embedded systems. Published 3 papers on neural network optimization techniques.',
+    id: 2,
+    role: 'Research Intern',
+    company: 'IIIT Hyderabad',
+    period: 'Summer 2024',
+    description: 'Research internship in computer vision and machine learning.',
     highlights: [
-      'Co-authored 3 research papers',
-      'Developed open-source ML toolkit',
-      'Organized technical workshops',
+      'Worked on ML model experiments and datasets',
+      'Collaborated with faculty on project deliverables',
     ],
     color: 'ai',
+  },
+  {
+    id: 3,
+    role: 'Projects & Open Source',
+    company: 'Personal',
+    period: '2023 - Present',
+    description: 'Building robotics, IoT, and ML projects; maintaining prototypes and repos.',
+    highlights: [
+      'Developed multiple proof-of-concept systems',
+      'Published code and documentation for community use',
+    ],
+    color: 'iot',
   },
 ];
 

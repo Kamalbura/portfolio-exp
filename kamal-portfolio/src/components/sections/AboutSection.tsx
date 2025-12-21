@@ -10,17 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 const stats = [
   { value: '15+', label: 'Projects Completed', color: 'ai' },
   { value: '3+', label: 'Years Experience', color: 'iot' },
-  { value: '5+', label: 'Research Papers', color: 'systems' },
   { value: '∞', label: 'Curiosity', color: 'gradient' },
 ];
 
 const techStack = [
-  { name: 'TensorFlow', icon: '🧠' },
-  { name: 'PyTorch', icon: '🔥' },
-  { name: 'Arduino', icon: '📡' },
-  { name: 'React', icon: '⚛️' },
-  { name: 'Python', icon: '🐍' },
-  { name: 'Node.js', icon: '💚' },
+  { name: 'TensorFlow' },
+  { name: 'PyTorch' },
+  { name: 'Arduino' },
+  { name: 'React' },
+  { name: 'Python' },
+  { name: 'Node.js' },
 ];
 
 export default function About() {
@@ -274,7 +273,6 @@ export default function About() {
                     key={tech.name}
                     className="tech-item px-4 py-2 rounded-full glass border border-white/5 flex items-center gap-2 hover:border-[#00d4ff]/30 transition-colors duration-300"
                   >
-                    <span>{tech.icon}</span>
                     <span className="text-sm text-[#a1a1aa]">{tech.name}</span>
                   </div>
                 ))}

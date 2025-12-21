@@ -125,7 +125,7 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
     const timer = setTimeout(() => {
       setPhase('morphing');
       startTimeRef.current = performance.now();
-    }, 1500);
+    }, 200);
     
     return () => clearTimeout(timer);
   }, [createTextPoints]);
@@ -145,7 +145,7 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
       pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
     } else if (phase === 'morphing') {
       const elapsed = (performance.now() - startTimeRef.current) / 1000;
-      const duration = 2.5;
+      const duration = 0.5;
       const t = Math.min(elapsed / duration, 1);
       
       const eased = t < 0.5 
@@ -174,7 +174,7 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
       }
       pointsRef.current.geometry.attributes.position.needsUpdate = true;
       
-      if (elapsed > 1.5) {
+      if (elapsed > 0.5) {
         setPhase('fadeOut');
         startTimeRef.current = performance.now();
       }

@@ -1,280 +1,235 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
-interface CursorState {
-  x: number;
-  y: number;
-  isHovering: boolean;
-  isClicking: boolean;
-  hoverText: string;
-  hoverColor: string;
-  isSkillHover: boolean;
+interface SkillHoverDetail {
+  category: string;
+  color: string;
 }
 
 export default function CustomCursor() {
-  const cursorRef = useRef<HTMLDivElement>(null);
-  const cursorDotRef = useRef<HTMLDivElement>(null);
-  const cursorTextRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>(0);
-  const [state, setState] = useState<CursorState>({
-    x: -100,
-    y: -100,
-    isHovering: false,
-    isClicking: false,
-    hoverText: '',
-    hoverColor: '',
-    isSkillHover: false,
-  });
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const cursorDotRef = useRef<HTMLDivElement | null>(null);
+  const cursorTextRef = useRef<HTMLDivElement | null>(null);
 
-  // Skill hover event listener
+  // UI state (non-position)
+  const [hoverText, setHoverText] = useState<string>('');
+  const [hoverColor, setHoverColor] = useState<string>('');
+  const [isSkillHover, setIsSkillHover] = useState<boolean>(false);
+
+  // Position refs to avoid re-renders
+  const mouse = useRef({ x: -9999, y: -9999, initialized: false });
+  const outerPos = useRef({ x: -9999, y: -9999 });
+  const dotPos = useRef({ x: -9999, y: -9999 });
+
+  // Quick setters (created on mount)
+  const setOuterX = useRef<any>(null);
+  const setOuterY = useRef<any>(null);
+  const setDotX = useRef<any>(null);
+  const setDotY = useRef<any>(null);
+
   useEffect(() => {
-    const handleSkillHover = (e: CustomEvent<{ category: string; color: string }>) => {
-      const { category, color } = e.detail;
-      setState((prev) => ({
-        ...prev,
-        isSkillHover: !!category,
-        hoverText: category,
-        hoverColor: color,
-      }));
+    const cursor = cursorRef.current;
+    const dot = cursorDotRef.current;
+    if (!cursor || !dot) return;
 
-      const cursor = cursorRef.current;
-      if (!cursor) return;
+    // Initially hide to prevent top-left jump
+    cursor.style.display = 'none';
+    dot.style.display = 'none';
 
-      if (category) {
-        gsap.to(cursor, {
-          scale: 2.5,
-          duration: 0.3,
-          ease: 'power2.out',
-        });
-      } else {
-        gsap.to(cursor, {
-          scale: 1,
-          duration: 0.3,
-          ease: 'power2.out',
-        });
-      }
+    // Create quickSetters for performant updates
+    setOuterX.current = gsap.quickSetter(cursor, 'x', 'px');
+    setOuterY.current = gsap.quickSetter(cursor, 'y', 'px');
+    setDotX.current = gsap.quickSetter(dot, 'x', 'px');
+    setDotY.current = gsap.quickSetter(dot, 'y', 'px');
+
+    const onFirstMove = (e: MouseEvent) => {
+      // reveal cursor at first reliable position
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
+      outerPos.current.x = e.clientX;
+      outerPos.current.y = e.clientY;
+      dotPos.current.x = e.clientX;
+      dotPos.current.y = e.clientY;
+
+      cursor.style.display = 'block';
+      dot.style.display = 'block';
+      mouse.current.initialized = true;
+
+      window.removeEventListener('mousemove', onFirstMove);
     };
 
-    window.addEventListener('skillHover', handleSkillHover as EventListener);
+    window.addEventListener('mousemove', onFirstMove, { passive: true });
+
     return () => {
-      window.removeEventListener('skillHover', handleSkillHover as EventListener);
+      window.removeEventListener('mousemove', onFirstMove);
     };
   }, []);
 
   useEffect(() => {
-    const cursor = cursorRef.current;
-    const cursorDot = cursorDotRef.current;
-    if (!cursor || !cursorDot) return;
+    const tick = () => {
+      // If mouse not initialized yet, skip
+      if (!mouse.current.initialized) return;
 
-    let mouseX = -100;
-    let mouseY = -100;
-    let cursorX = -100;
-    let cursorY = -100;
-    let dotX = -100;
-    let dotY = -100;
+      // lerp outer and dot positions
+      outerPos.current.x += (mouse.current.x - outerPos.current.x) * 0.14;
+      outerPos.current.y += (mouse.current.y - outerPos.current.y) * 0.14;
 
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      dotPos.current.x += (mouse.current.x - dotPos.current.x) * 0.33;
+      dotPos.current.y += (mouse.current.y - dotPos.current.y) * 0.33;
+
+      // apply via quickSetters (very fast)
+      setOuterX.current?.(outerPos.current.x - 20);
+      setOuterY.current?.(outerPos.current.y - 20);
+      setDotX.current?.(dotPos.current.x - 4);
+      setDotY.current?.(dotPos.current.y - 4);
     };
 
-    const onMouseDown = () => {
-      setState((prev) => ({ ...prev, isClicking: true }));
-      gsap.to(cursor, {
-        scale: 0.8,
-        duration: 0.15,
-        ease: 'power2.out',
-      });
+    gsap.ticker.add(tick);
+
+    return () => {
+      gsap.ticker.remove(tick);
+    };
+  }, []);
+
+  // Mouse move subscription updates the mouse ref only
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      mouse.current.x = e.clientX;
+      mouse.current.y = e.clientY;
     };
 
-    const onMouseUp = () => {
-      setState((prev) => ({ ...prev, isClicking: false }));
-      gsap.to(cursor, {
-        scale: state.isHovering || state.isSkillHover ? 2 : 1,
-        duration: 0.15,
-        ease: 'power2.out',
-      });
+    const onDown = () => {
+      gsap.to(cursorRef.current, { scale: 0.78, duration: 0.12, overwrite: 'auto', ease: 'power2.out' });
     };
 
-    // Animation loop using gsap.ticker for smooth 60fps
-    const animate = () => {
-      // Smooth follow for outer cursor (lerp factor 0.12)
-      cursorX += (mouseX - cursorX) * 0.12;
-      cursorY += (mouseY - cursorY) * 0.12;
-
-      // Faster follow for dot (lerp factor 0.3)
-      dotX += (mouseX - dotX) * 0.3;
-      dotY += (mouseY - dotY) * 0.3;
-
-      gsap.set(cursor, {
-        x: cursorX - 20,
-        y: cursorY - 20,
-      });
-
-      gsap.set(cursorDot, {
-        x: dotX - 4,
-        y: dotY - 4,
-      });
+    const onUp = () => {
+      gsap.to(cursorRef.current, { scale: isSkillHover || hoverText ? 2 : 1, duration: 0.12, overwrite: 'auto', ease: 'power2.out' });
     };
 
-    gsap.ticker.add(animate);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mousedown', onDown);
+    window.addEventListener('mouseup', onUp);
 
-    // Interactive elements hover handlers
-    const handleMouseEnter = (e: MouseEvent) => {
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mousedown', onDown);
+      window.removeEventListener('mouseup', onUp);
+    };
+  }, [isSkillHover, hoverText]);
+
+  // Interactive element hover handlers (scale cursor without changing position refs)
+  useEffect(() => {
+    const handleMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
-      const hoverText = target.dataset.cursorText || target.dataset.cursor || '';
-      
-      setState((prev) => ({ ...prev, isHovering: true, hoverText }));
-      
-      gsap.to(cursor, {
-        scale: 2,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
+      const text = (target.dataset && (target.dataset.cursorText || target.dataset.cursor)) || '';
+      setHoverText(text);
 
-      gsap.to(cursorDot, {
-        scale: 0,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
+      gsap.to(cursorRef.current, { scale: 2, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
+      gsap.to(cursorDotRef.current, { scale: 0, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
     };
 
     const handleMouseLeave = () => {
-      setState((prev) => ({ ...prev, isHovering: false, hoverText: '' }));
-      
-      gsap.to(cursor, {
-        scale: 1,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-
-      gsap.to(cursorDot, {
-        scale: 1,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
+      setHoverText('');
+      gsap.to(cursorRef.current, { scale: 1, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
+      gsap.to(cursorDotRef.current, { scale: 1, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
     };
 
-    // Set up event listeners
-    window.addEventListener('mousemove', onMouseMove, { passive: true });
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', onMouseUp);
+    const interactiveElements = document.querySelectorAll('a, button, [data-cursor], [data-cursor-text], .magnetic-btn, input, textarea');
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
+    });
 
-    // Add hover listeners to interactive elements
-    const setupInteractiveElements = () => {
-      const interactiveElements = document.querySelectorAll(
-        'a, button, [data-cursor], [data-cursor-text], .magnetic-btn, input, textarea'
-      );
-      
-      interactiveElements.forEach((el) => {
-        el.addEventListener('mouseenter', handleMouseEnter as EventListener);
-        el.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      return interactiveElements;
-    };
-
-    let interactiveElements = setupInteractiveElements();
-
-    // MutationObserver to handle dynamically added elements
     const observer = new MutationObserver(() => {
       interactiveElements.forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter as EventListener);
+        el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
       });
-      interactiveElements = setupInteractiveElements();
+      const next = document.querySelectorAll('a, button, [data-cursor], [data-cursor-text], .magnetic-btn, input, textarea');
+      next.forEach((el) => {
+        el.addEventListener('mouseenter', handleMouseEnter);
+        el.addEventListener('mouseleave', handleMouseLeave);
+      });
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Hide cursor on mobile/touch devices
-    const mediaQuery = window.matchMedia('(pointer: coarse)');
-    if (mediaQuery.matches) {
-      cursor.style.display = 'none';
-      cursorDot.style.display = 'none';
-    }
-
     return () => {
-      gsap.ticker.remove(animate);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mouseup', onMouseUp);
-      observer.disconnect();
-      
       interactiveElements.forEach((el) => {
-        el.removeEventListener('mouseenter', handleMouseEnter as EventListener);
+        el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
       });
+      observer.disconnect();
+    };
+  }, []);
 
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
+  // Skill hover event listener (for category-aware cursor)
+  useEffect(() => {
+    const onSkill = (e: Event) => {
+      const ev = e as CustomEvent<SkillHoverDetail>;
+      const { category, color } = ev.detail || { category: '', color: '' };
+      setIsSkillHover(!!category);
+      setHoverText(category || '');
+      setHoverColor(color || '');
+
+      if (category) {
+        gsap.to(cursorRef.current, { scale: 2.5, duration: 0.22, overwrite: 'auto', ease: 'power2.out' });
+      } else {
+        gsap.to(cursorRef.current, { scale: 1, duration: 0.22, overwrite: 'auto', ease: 'power2.out' });
       }
     };
-  }, [state.isHovering, state.isSkillHover]);
+
+    window.addEventListener('skillHover', onSkill as EventListener);
+    return () => window.removeEventListener('skillHover', onSkill as EventListener);
+  }, []);
 
   return (
     <>
-      {/* Outer cursor ring */}
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 w-10 h-10 pointer-events-none z-[10000] mix-blend-difference"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', display: 'none' }}
       >
         <div
-          className={`w-full h-full rounded-full border-2 transition-colors duration-300 flex items-center justify-center ${
-            state.isHovering || state.isSkillHover
-              ? 'border-white bg-white/10'
-              : 'border-white/60'
-          }`}
+          className={`w-full h-full rounded-full border-2 transition-colors duration-300 flex items-center justify-center`}
           style={{
-            borderColor: state.isSkillHover && state.hoverColor ? state.hoverColor : undefined,
-            boxShadow: state.isSkillHover && state.hoverColor 
-              ? `0 0 20px ${state.hoverColor}, inset 0 0 20px ${state.hoverColor}40`
-              : undefined,
+            borderColor: isSkillHover && hoverColor ? hoverColor : undefined,
+            boxShadow: isSkillHover && hoverColor ? `0 0 20px ${hoverColor}, inset 0 0 20px ${hoverColor}40` : undefined,
           }}
         >
-          {(state.hoverText || state.isSkillHover) && (
-            <span 
+          {(hoverText || isSkillHover) && (
+            <span
               ref={cursorTextRef}
               className="text-[7px] font-bold uppercase tracking-wider whitespace-nowrap"
-              style={{
-                color: state.isSkillHover ? state.hoverColor : 'white',
-                textShadow: state.isSkillHover ? `0 0 10px ${state.hoverColor}` : undefined,
-              }}
+              style={{ color: isSkillHover ? hoverColor : 'white', textShadow: isSkillHover ? `0 0 10px ${hoverColor}` : undefined }}
             >
-              {state.hoverText}
+              {hoverText}
             </span>
           )}
         </div>
       </div>
 
-      {/* Inner dot */}
       <div
         ref={cursorDotRef}
         className="fixed top-0 left-0 w-2 h-2 pointer-events-none z-[10001] mix-blend-difference"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', display: 'none' }}
       >
-        <div 
+        <div
           className="w-full h-full rounded-full bg-white"
-          style={{
-            backgroundColor: state.isSkillHover && state.hoverColor ? state.hoverColor : undefined,
-            boxShadow: state.isSkillHover && state.hoverColor 
-              ? `0 0 10px ${state.hoverColor}`
-              : undefined,
-          }}
+          style={{ backgroundColor: isSkillHover && hoverColor ? hoverColor : undefined, boxShadow: isSkillHover && hoverColor ? `0 0 10px ${hoverColor}` : undefined }}
         />
       </div>
 
-      {/* Hide default cursor globally */}
       <style jsx global>{`
         @media (pointer: fine) {
-          * {
-            cursor: none !important;
-          }
+          * { cursor: none !important; }
         }
       `}</style>
     </>
   );
 }
+

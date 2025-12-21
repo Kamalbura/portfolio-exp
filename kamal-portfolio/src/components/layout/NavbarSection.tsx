@@ -60,18 +60,16 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-        isScrolled
-          ? 'py-4 glass-strong'
-          : 'py-6 bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
+        isScrolled ? 'py-2 glass-strong' : 'py-3 bg-transparent'
       }`}
     >
-      <nav className="container flex items-center justify-between">
+      <nav className="container flex items-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6">
         {/* Logo */}
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
-          className="relative group"
+          className="relative group ml-1 sm:ml-2 md:ml-0"
           data-cursor="Home"
         >
           <span className="text-2xl font-bold text-gradient">KB</span>
@@ -79,13 +77,13 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className={`relative px-4 py-2 text-sm transition-colors duration-300 ${
+              className={`relative px-6 py-2 text-sm transition-colors duration-200 ${
                 activeSection === item.name.toLowerCase()
                   ? 'text-[#00d4ff]'
                   : 'text-[#a1a1aa] hover:text-[#f4f4f5]'
@@ -104,7 +102,7 @@ export default function Navbar() {
         <a
           href="#contact"
           onClick={(e) => handleNavClick(e, '#contact')}
-          className="hidden md:inline-flex magnetic-btn text-sm py-2 px-5"
+          className="hidden md:inline-flex magnetic-btn text-sm py-2 px-6"
           data-cursor="Contact"
         >
           <span>Let&apos;s Talk</span>
