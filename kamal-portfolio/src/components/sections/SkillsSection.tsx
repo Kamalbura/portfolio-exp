@@ -271,7 +271,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative min-h-[100vh] md:min-h-[120vh] section-spacing overflow-hidden"
+      className="relative min-h-screen section-spacing overflow-hidden"
       data-section="skills"
     >
       {/* Gradient overlays for depth */}

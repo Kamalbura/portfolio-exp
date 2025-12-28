@@ -7,15 +7,19 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const TOTAL_SECTIONS = 6;
+
 interface SmoothScrollContextType {
   lenis: Lenis | null;
   scrollProgress: number;
+  currentSection: number;
   getScrollProgress: () => number;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType>({
   lenis: null,
   scrollProgress: 0,
+  currentSection: 0,
   getScrollProgress: () => 0,
 });
 
@@ -56,7 +60,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       scrollProgressRef.current = e.progress;
       
       // Only update React state when section boundary changes (coarse-grained)
-      const newSection = Math.floor(e.progress * 5); // 5 sections
+      const newSection = Math.min(TOTAL_SECTIONS - 1, Math.floor(e.progress * TOTAL_SECTIONS));
       setCurrentSection((prev) => (prev !== newSection ? newSection : prev));
       
       ScrollTrigger.update();
@@ -108,10 +112,10 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
   // Derive scrollProgress from section for backwards compatibility
   // Components needing precise values should use getScrollProgress()
-  const scrollProgress = currentSection / 5;
+  const scrollProgress = currentSection / Math.max(1, TOTAL_SECTIONS - 1);
 
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollProgress, getScrollProgress }}>
+    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollProgress, currentSection, getScrollProgress }}>
       {children}
     </SmoothScrollContext.Provider>
   );

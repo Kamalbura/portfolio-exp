@@ -142,8 +142,8 @@ export default function CustomCursor() {
       const text = (target.dataset && (target.dataset.cursorText || target.dataset.cursor)) || '';
       setHoverText(text);
 
-      gsap.to(cursorRef.current, { scale: 2, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
-      gsap.to(cursorDotRef.current, { scale: 0, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
+      gsap.to(cursorRef.current, { scale: 1.4, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
+      gsap.to(cursorDotRef.current, { scale: 0.4, duration: 0.18, overwrite: 'auto', ease: 'power2.out' });
     };
 
     const handleMouseLeave = () => {
@@ -192,7 +192,7 @@ export default function CustomCursor() {
       setHoverColor(color || '');
 
       if (category) {
-        gsap.to(cursorRef.current, { scale: 2.5, duration: 0.22, overwrite: 'auto', ease: 'power2.out' });
+        gsap.to(cursorRef.current, { scale: 1.6, duration: 0.22, overwrite: 'auto', ease: 'power2.out' });
       } else {
         gsap.to(cursorRef.current, { scale: 1, duration: 0.22, overwrite: 'auto', ease: 'power2.out' });
       }
@@ -240,7 +240,7 @@ export default function CustomCursor() {
       </div>
 
       <style jsx global>{`
-        @media (pointer: fine) {
+        @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
           * { cursor: none !important; }
         }
       `}</style>

@@ -100,6 +100,17 @@ function ParticleField() {
 // Use externally defined CoreOrb (upgraded crystalline transmission material)
 
 // Camera Controller
+const SECTION_COUNT = 6;
+
+const cameraKeyframes = [
+  { x: 0, y: 0, z: 30 }, // Hero
+  { x: 4, y: 2, z: 22 }, // About
+  { x: -6, y: 1, z: 20 }, // Skills
+  { x: 0, y: -2, z: 32 }, // Projects
+  { x: 2, y: 3, z: 26 }, // Experience
+  { x: 0, y: 5, z: 24 }, // Contact
+];
+
 function CameraController() {
   const { camera } = useThree();
   const { getScrollProgress } = useSmoothScroll();
@@ -111,8 +122,7 @@ function CameraController() {
     const onSkill = (e: Event) => {
       const ev = e as CustomEvent<{ category: string }>;
       if (ev.detail?.category) {
-        // zoom in for dramatic illumination
-        overrideRef.current = { x: -6, y: 0, z: 12 };
+        overrideRef.current = { x: -3.5, y: 0.5, z: 16 };
       } else {
         overrideRef.current = null;
       }
@@ -122,33 +132,27 @@ function CameraController() {
   }, []);
 
   useFrame(() => {
-    // Camera narrative based on scroll (use getter for high-frequency access)
-    const section = getScrollProgress() * 5; // 5 sections
+    const absoluteProgress = getScrollProgress() * Math.max(1, SECTION_COUNT - 1);
+    const lowerIndex = Math.floor(absoluteProgress);
+    const upperIndex = Math.min(cameraKeyframes.length - 1, lowerIndex + 1);
+    const blend = absoluteProgress - lowerIndex;
 
-    if (section < 1) {
-      // Hero: Wide shot
-      targetRef.current = { x: 0, y: 0, z: 30 };
-    } else if (section < 2) {
-      // About: Zoom in
-      targetRef.current = { x: 5, y: 2, z: 20 };
-    } else if (section < 3) {
-      // Skills: Side angle
-      targetRef.current = { x: -8, y: 0, z: 25 };
-    } else if (section < 4) {
-      // Projects: Pull back
-      targetRef.current = { x: 0, y: -3, z: 35 };
-    } else {
-      // Contact: Final position
-      targetRef.current = { x: 0, y: 5, z: 28 };
-    }
+    const lower = cameraKeyframes[lowerIndex] ?? cameraKeyframes[0];
+    const upper = cameraKeyframes[upperIndex] ?? cameraKeyframes[cameraKeyframes.length - 1];
+
+    targetRef.current = {
+      x: THREE.MathUtils.lerp(lower.x, upper.x, blend),
+      y: THREE.MathUtils.lerp(lower.y, upper.y, blend),
+      z: THREE.MathUtils.lerp(lower.z, upper.z, blend),
+    };
 
     // If override is active, use it
     const activeTarget = overrideRef.current ?? targetRef.current;
 
-    // Smooth camera movement
-    camera.position.x += (activeTarget.x - camera.position.x) * 0.04;
-    camera.position.y += (activeTarget.y - camera.position.y) * 0.04;
-    camera.position.z += (activeTarget.z - camera.position.z) * 0.04;
+    // Smooth camera movement (reduced lerp for buttery smooth motion)
+    camera.position.x += (activeTarget.x - camera.position.x) * 0.02;
+    camera.position.y += (activeTarget.y - camera.position.y) * 0.02;
+    camera.position.z += (activeTarget.z - camera.position.z) * 0.02;
     camera.lookAt(0, 0, 0);
   });
 

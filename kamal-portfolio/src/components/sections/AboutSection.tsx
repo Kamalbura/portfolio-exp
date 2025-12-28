@@ -221,7 +221,7 @@ export default function About() {
       </div>
 
       <div className="container relative max-w-5xl">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Content Column */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             {/* Section Label */}
@@ -321,33 +321,6 @@ export default function About() {
                 <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8]" />
               </div>
 
-              {/* Glass card overlay */}
-              <div className="absolute bottom-6 left-6 right-6 glass-card rounded-2xl p-5">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#00d4ff] to-[#00ffc8] flex items-center justify-center text-[#0b0d10] font-bold text-lg">
-                    KB
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[#f4f4f5]">Kamal Bura</div>
-                    <div className="text-[#71717a] text-sm">B.E. CSE • Class of 2025</div>
-                    <div className="flex items-center gap-1.5 mt-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00ffc8]" />
-                      <span className="text-xs text-[#00ffc8]">Open to opportunities</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating badges (hidden on small screens to avoid overlap) */}
-            <div className="hidden md:block absolute -top-4 right-8 lg:right-0 glass rounded-2xl p-4 border-beam animate-float">
-              <span className="text-3xl">🤖</span>
-            </div>
-            <div className="hidden md:block absolute top-1/3 -left-4 lg:-left-8 glass rounded-2xl p-4 glow-iot animate-float" style={{ animationDelay: '-2s' }}>
-              <span className="text-3xl">📡</span>
-            </div>
-            <div className="hidden md:block absolute bottom-1/3 right-4 lg:-right-4 glass rounded-2xl p-4 glow-systems animate-float" style={{ animationDelay: '-4s' }}>
-              <span className="text-3xl">⚡</span>
             </div>
           </div>
         </div>

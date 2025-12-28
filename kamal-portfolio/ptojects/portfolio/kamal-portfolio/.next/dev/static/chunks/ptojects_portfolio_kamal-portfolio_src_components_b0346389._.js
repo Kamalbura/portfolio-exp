@@ -21,9 +21,11 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].registerPlugin(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"]);
+const TOTAL_SECTIONS = 6;
 const SmoothScrollContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])({
     lenis: null,
     scrollProgress: 0,
+    currentSection: 0,
     getScrollProgress: ()=>0
 });
 const useSmoothScroll = ()=>{
@@ -64,7 +66,7 @@ function SmoothScrollProvider({ children }) {
                     // Update ref (no re-render)
                     scrollProgressRef.current = e.progress;
                     // Only update React state when section boundary changes (coarse-grained)
-                    const newSection = Math.floor(e.progress * 5); // 5 sections
+                    const newSection = Math.min(TOTAL_SECTIONS - 1, Math.floor(e.progress * TOTAL_SECTIONS));
                     setCurrentSection({
                         "SmoothScrollProvider.useEffect": (prev)=>prev !== newSection ? newSection : prev
                     }["SmoothScrollProvider.useEffect"]);
@@ -118,17 +120,18 @@ function SmoothScrollProvider({ children }) {
     }["SmoothScrollProvider.useEffect"], []);
     // Derive scrollProgress from section for backwards compatibility
     // Components needing precise values should use getScrollProgress()
-    const scrollProgress = currentSection / 5;
+    const scrollProgress = currentSection / Math.max(1, TOTAL_SECTIONS - 1);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SmoothScrollContext.Provider, {
         value: {
             lenis: lenisRef.current,
             scrollProgress,
+            currentSection,
             getScrollProgress
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/providers/SmoothScrollProvider.tsx",
-        lineNumber: 114,
+        lineNumber: 118,
         columnNumber: 5
     }, this);
 }
@@ -324,13 +327,13 @@ function CustomCursor() {
                     const text = target.dataset && (target.dataset.cursorText || target.dataset.cursor) || '';
                     setHoverText(text);
                     __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(cursorRef.current, {
-                        scale: 2,
+                        scale: 1.4,
                         duration: 0.18,
                         overwrite: 'auto',
                         ease: 'power2.out'
                     });
                     __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(cursorDotRef.current, {
-                        scale: 0,
+                        scale: 0.4,
                         duration: 0.18,
                         overwrite: 'auto',
                         ease: 'power2.out'
@@ -413,7 +416,7 @@ function CustomCursor() {
                     setHoverColor(color || '');
                     if (category) {
                         __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(cursorRef.current, {
-                            scale: 2.5,
+                            scale: 1.6,
                             duration: 0.22,
                             overwrite: 'auto',
                             ease: 'power2.out'
@@ -444,20 +447,20 @@ function CustomCursor() {
                     willChange: 'transform',
                     display: 'none'
                 },
-                className: "jsx-c02c85bd993c4a72" + " " + "fixed top-0 left-0 w-10 h-10 pointer-events-none z-[10000] mix-blend-difference",
+                className: "jsx-ee398d367c4f2654" + " " + "fixed top-0 left-0 w-10 h-10 pointer-events-none z-[10000] mix-blend-difference",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
                         borderColor: isSkillHover && hoverColor ? hoverColor : undefined,
                         boxShadow: isSkillHover && hoverColor ? `0 0 20px ${hoverColor}, inset 0 0 20px ${hoverColor}40` : undefined
                     },
-                    className: "jsx-c02c85bd993c4a72" + " " + `w-full h-full rounded-full border-2 transition-colors duration-300 flex items-center justify-center`,
+                    className: "jsx-ee398d367c4f2654" + " " + `w-full h-full rounded-full border-2 transition-colors duration-300 flex items-center justify-center`,
                     children: (hoverText || isSkillHover) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         ref: cursorTextRef,
                         style: {
                             color: isSkillHover ? hoverColor : 'white',
                             textShadow: isSkillHover ? `0 0 10px ${hoverColor}` : undefined
                         },
-                        className: "jsx-c02c85bd993c4a72" + " " + "text-[7px] font-bold uppercase tracking-wider whitespace-nowrap",
+                        className: "jsx-ee398d367c4f2654" + " " + "text-[7px] font-bold uppercase tracking-wider whitespace-nowrap",
                         children: hoverText
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/ui/CustomCursor.tsx",
@@ -480,13 +483,13 @@ function CustomCursor() {
                     willChange: 'transform',
                     display: 'none'
                 },
-                className: "jsx-c02c85bd993c4a72" + " " + "fixed top-0 left-0 w-2 h-2 pointer-events-none z-[10001] mix-blend-difference",
+                className: "jsx-ee398d367c4f2654" + " " + "fixed top-0 left-0 w-2 h-2 pointer-events-none z-[10001] mix-blend-difference",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
                         backgroundColor: isSkillHover && hoverColor ? hoverColor : undefined,
                         boxShadow: isSkillHover && hoverColor ? `0 0 10px ${hoverColor}` : undefined
                     },
-                    className: "jsx-c02c85bd993c4a72" + " " + "w-full h-full rounded-full bg-white"
+                    className: "jsx-ee398d367c4f2654" + " " + "w-full h-full rounded-full bg-white"
                 }, void 0, false, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/ui/CustomCursor.tsx",
                     lineNumber: 236,
@@ -498,8 +501,8 @@ function CustomCursor() {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                id: "c02c85bd993c4a72",
-                children: "@media (pointer:fine){*{cursor:none!important}}"
+                id: "ee398d367c4f2654",
+                children: "@media (pointer:fine) and (prefers-reduced-motion:no-preference){*{cursor:none!important}}"
             }, void 0, false, void 0, this)
         ]
     }, void 0, true);

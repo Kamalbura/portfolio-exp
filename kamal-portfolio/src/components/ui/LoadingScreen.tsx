@@ -13,8 +13,8 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
   
   // Adaptive particle count - loading screen should be lighter
   const count = useMemo(() => {
-    if (typeof window === 'undefined') return 8000;
-    return window.innerWidth < 768 ? 5000 : 8000;
+    if (typeof window === 'undefined') return 4000;
+    return window.innerWidth < 768 ? 2500 : 4000;
   }, []);
   
   const [phase, setPhase] = useState<'sphere' | 'morphing' | 'text' | 'fadeOut'>('sphere');
@@ -24,12 +24,13 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
 
   // Create text positions from canvas
   const createTextPoints = useCallback(() => {
-    const text = 'KAMAL BURA';
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const text = isMobile ? 'KB' : 'KAMAL BURA';
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return new Float32Array(count * 3);
 
-    const fontSize = 120;
+    const fontSize = isMobile ? 72 : 120;
     const padding = 40;
 
     ctx.font = `bold ${fontSize}px Arial, sans-serif`;
@@ -151,7 +152,7 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
       pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
     } else if (phase === 'morphing') {
       const elapsed = (performance.now() - startTimeRef.current) / 1000;
-      const duration = 0.5;
+      const duration = 0.35;
       const t = Math.min(elapsed / duration, 1);
       
       const eased = t < 0.5 
@@ -180,13 +181,13 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
       }
       pointsRef.current.geometry.attributes.position.needsUpdate = true;
       
-      if (elapsed > 0.5) {
+      if (elapsed > 0.4) {
         setPhase('fadeOut');
         startTimeRef.current = performance.now();
       }
     } else if (phase === 'fadeOut') {
       const elapsed = (performance.now() - startTimeRef.current) / 1000;
-      const duration = 1.2;
+      const duration = 0.8;
       const t = Math.min(elapsed / duration, 1);
       
       const material = pointsRef.current.material as THREE.PointsMaterial;

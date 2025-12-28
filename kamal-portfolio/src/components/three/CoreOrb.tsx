@@ -39,12 +39,11 @@ export default function CoreOrb() {
     const onSkill = (e: Event) => {
       const ev = e as CustomEvent<{ category?: string; color?: string }>;
       if (ev.detail?.category) {
-        // Intensify light and scale up orb for dramatic effect
-        gsap.to(pointRef.current || {}, { intensity: 6, duration: 0.45, ease: 'power2.out' });
-        gsap.to(meshRef.current?.scale || {}, { x: 6, y: 6, z: 6, duration: 0.6, ease: 'expo.out' });
-        gsap.to(innerRef.current?.scale || {}, { x: 1.6, y: 1.6, z: 1.6, duration: 0.6, ease: 'expo.out' });
+        gsap.to(pointRef.current || {}, { intensity: 3.2, duration: 0.45, ease: 'power2.out' });
+        gsap.to(meshRef.current?.scale || {}, { x: 1.4, y: 1.4, z: 1.4, duration: 0.6, ease: 'expo.out' });
+        gsap.to(innerRef.current?.scale || {}, { x: 1.2, y: 1.2, z: 1.2, duration: 0.6, ease: 'expo.out' });
       } else {
-        gsap.to(pointRef.current || {}, { intensity: 2, duration: 0.45, ease: 'power2.out' });
+        gsap.to(pointRef.current || {}, { intensity: 1.6, duration: 0.45, ease: 'power2.out' });
         gsap.to(meshRef.current?.scale || {}, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'expo.out' });
         gsap.to(innerRef.current?.scale || {}, { x: 1, y: 1, z: 1, duration: 0.6, ease: 'expo.out' });
       }

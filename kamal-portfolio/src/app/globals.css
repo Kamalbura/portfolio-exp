@@ -87,7 +87,7 @@ body::before {
   z-index: 9999;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.03;
+  opacity: 0.01;
   mix-blend-mode: overlay;
 }
 
@@ -294,17 +294,26 @@ main {
   transform-style: preserve-3d;
 }
 
+.hero-name-contrast {
+  text-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(0, 212, 255, 0.35),
+    0 0 2px rgba(11, 13, 16, 0.6);
+}
+
 /* Section positioning only; spacing is handled per-section for predictability */
 section {
   position: relative;
 }
 
 /* Container */
+
 .container {
   width: 100%;
-  max-width: 100%;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  padding-left: clamp(1.5rem, 5vw, 4rem);
+  padding-right: clamp(1.5rem, 5vw, 4rem);
 }
 
 .container.max-w-5xl {
@@ -402,14 +411,16 @@ section {
 /* Project Cards */
 .project-card {
   flex-shrink: 0;
-  width: clamp(260px, 68vw, 760px);
-  height: clamp(340px, 58vh, 520px);
-  max-height: 540px;
-  margin-right: clamp(1.25rem, 3vw, 2.5rem);
+  width: clamp(280px, 68vw, 780px);
+  min-height: 360px;
+  height: clamp(360px, 56vh, 680px);
+  margin-right: clamp(1.5rem, 3.5vw, 2.75rem);
   border-radius: 1.5rem;
   position: relative;
   overflow: hidden;
   transition: transform 0.6s var(--ease-out-expo);
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover {
@@ -418,19 +429,17 @@ section {
 
 @media (max-width: 1024px) {
   .project-card {
-    width: 75vw;
-    height: 52vh;
-    max-height: 480px;
-    margin-right: 1.5rem;
+    width: 76vw;
+    height: clamp(340px, 52vh, 580px);
+    margin-right: 1.75rem;
   }
 }
 
 @media (max-width: 768px) {
   .project-card {
-    width: 80vw;
-    height: 360px;
-    max-height: none;
-    margin-right: 1rem;
+    width: 84vw;
+    height: clamp(340px, 50vh, 420px);
+    margin-right: 1.25rem;
   }
   
   .project-card h3 {
@@ -504,7 +513,7 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 10vw, 10rem);
+  font-size: clamp(2.5rem, 10vw, 7.5rem);
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.04em;
@@ -530,7 +539,7 @@ section {
 }
 
 .section-title {
-  font-size: clamp(2rem, 6vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4.5rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;

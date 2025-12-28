@@ -154,7 +154,7 @@ export default function Projects() {
       className="relative overflow-hidden section-spacing"
     >
       {/* Header - Fixed during scroll */}
-      <div className="absolute top-16 md:top-20 left-0 right-0 z-20 container">
+      <div className="absolute top-0 md:top-0 left-0 right-0 z-20 container pt-12 md:pt-16">
         <FadeIn>
           <span className="section-label">Portfolio</span>
         </FadeIn>
@@ -168,7 +168,7 @@ export default function Projects() {
       {/* Horizontal scroll container */}
       <div
         ref={containerRef}
-        className="min-h-[80vh] md:min-h-screen md:h-[90vh] flex items-center pt-28 md:pt-32"
+        className="min-h-[80vh] md:min-h-screen md:h-screen flex items-center pt-40 md:pt-44"
       >
         <div
           ref={wrapperRef}
@@ -188,33 +188,33 @@ export default function Projects() {
                 />
 
                 {/* Content */}
-                <div className="relative h-full p-8 flex flex-col justify-between z-10">
+                <div className="relative h-full p-6 md:p-8 flex flex-col justify-between z-10">
                   {/* Top section */}
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
+                  <div className="flex-grow">
+                    <div className="flex items-center justify-between mb-4 gap-4">
                       <span
-                        className={`text-xs px-3 py-1 rounded-full border ${colors.tag}`}
+                        className={`text-xs px-3 py-1 rounded-full border ${colors.tag} flex-shrink-0`}
                       >
                         {project.category}
                       </span>
-                      <span className="text-[#52525b] text-sm">
+                      <span className="text-[#52525b] text-sm flex-shrink-0">
                         0{index + 1}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-[#f4f4f5]">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4 text-[#f4f4f5] line-clamp-2">
                       {project.title}
                     </h3>
 
-                    <p className="text-[#a1a1aa] text-sm lg:text-base leading-relaxed line-clamp-3">
+                    <p className="text-[#a1a1aa] text-sm md:text-base leading-relaxed line-clamp-2 md:line-clamp-3">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Bottom section */}
-                  <div>
+                  <div className="flex-shrink-0 mt-4 md:mt-6">
                     {/* Tech stack */}
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
@@ -226,15 +226,15 @@ export default function Projects() {
                     </div>
 
                     {/* Links */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 md:gap-4">
                       <a
                         href={project.link}
-                        className="magnetic-btn text-sm py-2 px-4"
+                        className="magnetic-btn text-xs md:text-sm py-2 px-3 md:px-4"
                         data-cursor="View"
                       >
                         <span>View Project</span>
                         <svg
-                          className="w-4 h-4"
+                          className="w-3 h-3 md:w-4 md:h-4"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -255,7 +255,7 @@ export default function Projects() {
                         data-cursor="GitHub"
                       >
                         <svg
-                          className="w-5 h-5"
+                          className="w-4 h-4 md:w-5 md:h-5"
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >

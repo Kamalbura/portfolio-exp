@@ -2,10 +2,16 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 
-gsap.registerPlugin(ScrollTrigger);
+const heroNavItems = [
+  { num: '01', id: 'home', label: 'Home' },
+  { num: '02', id: 'about', label: 'About' },
+  { num: '03', id: 'skills', label: 'Skills' },
+  { num: '04', id: 'projects', label: 'Projects' },
+  { num: '05', id: 'experience', label: 'Experience' },
+  { num: '06', id: 'contact', label: 'Contact' },
+];
 
 interface HeroProps {
   isLoaded?: boolean;
@@ -14,19 +20,16 @@ interface HeroProps {
 export default function Hero({ isLoaded = true }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const sideNavRef = useRef<HTMLDivElement>(null);
   const socialRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
 
   const initAnimations = useCallback(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
-    const badge = badgeRef.current;
     const subtitle = subtitleRef.current;
     const cta = ctaRef.current;
     const scrollIndicator = scrollIndicatorRef.current;
@@ -39,8 +42,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
     if (timelineRef.current) {
       timelineRef.current.kill();
     }
-    scrollTriggersRef.current.forEach(st => st.kill());
-    scrollTriggersRef.current = [];
 
     // Split title text for kinetic typography
     const titleSplit = new SplitType(title, {
@@ -54,8 +55,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       opacity: 0,
       rotateX: -80,
     });
-    
-    if (badge) gsap.set(badge, { opacity: 0, y: 40, scale: 0.9 });
     if (subtitle) gsap.set(subtitle, { opacity: 0, y: 60 });
     if (cta) gsap.set(cta, { opacity: 0, y: 50 });
     if (scrollIndicator) gsap.set(scrollIndicator, { opacity: 0, y: 30 });
@@ -70,16 +69,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
 
     timelineRef.current = tl;
 
-    // Badge entrance
-    if (badge) {
-      tl.to(badge, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-      });
-    }
-
     // Title chars stagger reveal with 3D effect
     tl.to(titleSplit.chars, {
       y: 0,
@@ -91,7 +80,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         from: 'start',
       },
       ease: 'power3.out',
-    }, '-=0.4');
+    });
 
     // Subtitle entrance
     if (subtitle) {
@@ -140,50 +129,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       }, '-=0.5');
     }
 
-    // Parallax scroll effects
-    const parallaxTitle = ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: 1.5,
-      animation: gsap.to(title, { y: -150, ease: 'none' }),
-    });
-    scrollTriggersRef.current.push(parallaxTitle);
-
-    if (subtitle) {
-      const parallaxSubtitle = ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1.5,
-        animation: gsap.to(subtitle, { y: -80, ease: 'none' }),
-      });
-      scrollTriggersRef.current.push(parallaxSubtitle);
-    }
-
-    if (badge) {
-      const parallaxBadge = ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-        animation: gsap.to(badge, { y: -50, opacity: 0, ease: 'none' }),
-      });
-      scrollTriggersRef.current.push(parallaxBadge);
-    }
-
-    // Fade out scroll indicator on scroll
-    if (scrollIndicator) {
-      const fadeIndicator = ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: '20% top',
-        scrub: true,
-        animation: gsap.to(scrollIndicator, { opacity: 0, y: -20 }),
-      });
-      scrollTriggersRef.current.push(fadeIndicator);
-    }
-
     return () => {
       titleSplit.revert();
     };
@@ -197,8 +142,6 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         if (timelineRef.current) {
           timelineRef.current.kill();
         }
-        scrollTriggersRef.current.forEach(st => st.kill());
-        scrollTriggersRef.current = [];
       };
     }
   }, [isLoaded, initAnimations]);
@@ -217,28 +160,14 @@ export default function Hero({ isLoaded = true }: HeroProps) {
 
       {/* Content */}
       <div className="hero-content container text-center relative z-10 max-w-4xl">
-        {/* Pre-title badge */}
-        <div 
-          ref={badgeRef}
-          className="mb-8 inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass border border-white/10"
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ffc8] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00ffc8]" />
-          </span>
-          <span className="text-sm text-[#a1a1aa] tracking-wide font-medium">
-            Open to Research & Internship Opportunities
-          </span>
-        </div>
-
         {/* Main title with perspective for 3D effect */}
         <h1
           ref={titleRef}
-          className="hero-title mb-8"
+            className="hero-title mb-8"
           style={{ perspective: '1000px' }}
         >
           <span className="block text-[#f4f4f5]">KAMAL</span>
-          <span className="block text-gradient">BURA</span>
+            <span className="block text-gradient hero-name-contrast">BURA</span>
         </h1>
 
         {/* Subtitle */}
@@ -258,10 +187,10 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         </div>
 
         {/* CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 md:gap-6 lg:gap-8 mt-8 md:mt-12">
           <a
             href="#projects"
-            className="magnetic-btn magnetic-btn-primary group"
+            className="magnetic-btn magnetic-btn-primary group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]"
             data-cursor="View"
             data-cursor-text="View"
           >
@@ -282,7 +211,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
           </a>
           <a
             href="#contact"
-            className="magnetic-btn group"
+            className="magnetic-btn group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]"
             data-cursor="Contact"
             data-cursor-text="Contact"
           >
@@ -307,7 +236,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       {/* Scroll indicator */}
       <div 
         ref={scrollIndicatorRef}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
+        className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
       >
         <span className="text-[10px] text-[#52525b] tracking-[0.3em] uppercase font-medium">
           Scroll to explore
@@ -322,12 +251,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         ref={sideNavRef}
         className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-5 z-10"
       >
-        {[
-          { num: '01', id: 'home', label: 'Home' },
-          { num: '02', id: 'about', label: 'About' },
-          { num: '03', id: 'projects', label: 'Projects' },
-          { num: '04', id: 'contact', label: 'Contact' },
-        ].map((item, i) => (
+        {heroNavItems.map((item, i) => (
           <a
             key={item.num}
             href={`#${item.id}`}
