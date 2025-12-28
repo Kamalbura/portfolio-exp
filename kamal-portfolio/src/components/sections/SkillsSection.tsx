@@ -105,6 +105,7 @@ export default function Skills() {
   const containerRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<Map<number, HTMLSpanElement>>(new Map());
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
+  const skillsActiveRef = useRef(false);
   
   // Generate word positions with useMemo for performance
   const wordData = useMemo<WordData[]>(() => {
@@ -139,6 +140,16 @@ export default function Skills() {
     const section = sectionRef.current;
     const container = containerRef.current;
     if (!section || !container) return;
+
+    const setSectionActive = (active: boolean) => {
+      skillsActiveRef.current = active;
+      window.dispatchEvent(new CustomEvent('skillsFocus', { detail: { active } }));
+      if (!active) {
+        window.dispatchEvent(new CustomEvent('skillHover', {
+          detail: { category: '', color: '', key: '' },
+        }));
+      }
+    };
 
     // Cleanup
     scrollTriggersRef.current.forEach(st => st.kill());
@@ -180,6 +191,17 @@ export default function Skills() {
       },
     });
     scrollTriggersRef.current.push(entranceSt);
+
+    const focusSt = ScrollTrigger.create({
+      trigger: section,
+      start: 'top 70%',
+      end: 'bottom top',
+      onEnter: () => setSectionActive(true),
+      onEnterBack: () => setSectionActive(true),
+      onLeave: () => setSectionActive(false),
+      onLeaveBack: () => setSectionActive(false),
+    });
+    scrollTriggersRef.current.push(focusSt);
 
     // The "Scanning Light" effect - words glow as they enter viewport center
     const scanTrigger = ScrollTrigger.create({
@@ -226,6 +248,7 @@ export default function Skills() {
 
   // Hover handlers
   const handleWordHover = useCallback((index: number) => {
+    if (!skillsActiveRef.current) return;
     const word = wordsRef.current.get(index);
     const data = wordData[index];
     if (!word || !data) return;
@@ -243,11 +266,12 @@ export default function Skills() {
 
     // Dispatch custom event for cursor
     window.dispatchEvent(new CustomEvent('skillHover', {
-      detail: { category: colors.label, color: colors.color }
+      detail: { category: colors.label, color: colors.color, key: data.category }
     }));
   }, [wordData]);
 
   const handleWordLeave = useCallback((index: number) => {
+    if (!skillsActiveRef.current) return;
     const word = wordsRef.current.get(index);
     const data = wordData[index];
     if (!word || !data) return;
@@ -263,7 +287,7 @@ export default function Skills() {
 
     // Clear cursor
     window.dispatchEvent(new CustomEvent('skillHover', {
-      detail: { category: '', color: '' }
+      detail: { category: '', color: '', key: '' }
     }));
   }, [wordData]);
 

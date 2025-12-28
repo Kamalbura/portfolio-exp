@@ -13,6 +13,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kam
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/three/build/three.core.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$shapes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/@react-three/drei/core/shapes.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$MeshTransmissionMaterial$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/@react-three/drei/core/MeshTransmissionMaterial.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Billboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/@react-three/drei/core/Billboard.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/@react-three/drei/core/Text.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -21,6 +23,20 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+const skillIcons = {
+    ai: {
+        glyph: '</>',
+        color: '#00d4ff'
+    },
+    iot: {
+        glyph: '~~',
+        color: '#00ffc8'
+    },
+    systems: {
+        glyph: '[]',
+        color: '#8b5cf6'
+    }
+};
 function CoreOrb() {
     _s();
     const meshRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
@@ -28,6 +44,11 @@ function CoreOrb() {
     const ringRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const innerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const pointRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const iconRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const iconMaterialRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const skillsFocusRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const [activeIconKey, setActiveIconKey] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [iconColor, setIconColor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('#00d4ff');
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$1eccaf1c$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__D__as__useFrame$3e$__["useFrame"])({
         "CoreOrb.useFrame": (state)=>{
             if (meshRef.current) {
@@ -43,102 +64,161 @@ function CoreOrb() {
                 ringRef.current.rotation.x = state.clock.elapsedTime * 0.5;
                 ringRef.current.rotation.y = state.clock.elapsedTime * 0.2;
             }
-            // subtle pulsing inner glow
             if (innerRef.current) {
                 const pulse = 0.5 + Math.abs(Math.sin(state.clock.elapsedTime * 2)) * 0.8;
-                innerRef.current.material.emissiveIntensity = pulse;
-                innerRef.current.material.emissive = new __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"]('#00d4ff');
+                const material = innerRef.current.material;
+                material.emissiveIntensity = pulse;
+                material.emissive = new __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"]('#00d4ff');
             }
         }
     }["CoreOrb.useFrame"]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "CoreOrb.useEffect": ()=>{
-            const onSkill = {
-                "CoreOrb.useEffect.onSkill": (e)=>{
-                    const ev = e;
-                    if (ev.detail?.category) {
+            if (iconRef.current) {
+                iconRef.current.scale.setScalar(0.2);
+            }
+        }
+    }["CoreOrb.useEffect"], []);
+    const animateOrbScale = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "CoreOrb.useCallback[animateOrbScale]": (scale, duration = 0.8)=>{
+            if (meshRef.current) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(meshRef.current.scale, {
+                    x: scale,
+                    y: scale,
+                    z: scale,
+                    duration,
+                    ease: 'power2.out'
+                });
+            }
+            if (innerRef.current) {
+                __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(innerRef.current.scale, {
+                    x: scale * 0.9,
+                    y: scale * 0.9,
+                    z: scale * 0.9,
+                    duration,
+                    ease: 'power2.out'
+                });
+            }
+        }
+    }["CoreOrb.useCallback[animateOrbScale]"], []);
+    const animateIconVisibility = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "CoreOrb.useCallback[animateIconVisibility]": (visible, color)=>{
+            if (!iconRef.current || !iconMaterialRef.current) return;
+            if (color) {
+                iconMaterialRef.current.color = new __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](color);
+            }
+            __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(iconRef.current.scale, {
+                x: visible ? 0.9 : 0.2,
+                y: visible ? 0.9 : 0.2,
+                z: 1,
+                duration: visible ? 0.85 : 0.5,
+                ease: 'power2.out'
+            });
+            __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(iconMaterialRef.current, {
+                opacity: visible ? 1 : 0,
+                duration: visible ? 0.65 : 0.4,
+                ease: 'power2.out'
+            });
+        }
+    }["CoreOrb.useCallback[animateIconVisibility]"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "CoreOrb.useEffect": ()=>{
+            const handleFocus = {
+                "CoreOrb.useEffect.handleFocus": (event)=>{
+                    const detail = event.detail;
+                    const active = !!detail?.active;
+                    skillsFocusRef.current = active;
+                    animateOrbScale(active ? 1.1 : 1, 1.1);
+                    if (!active) {
+                        setActiveIconKey(null);
+                        animateIconVisibility(false);
                         __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(pointRef.current || {}, {
-                            intensity: 3.2,
-                            duration: 0.45,
+                            intensity: 1.6,
+                            duration: 0.6,
                             ease: 'power2.out'
-                        });
-                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(meshRef.current?.scale || {}, {
-                            x: 1.4,
-                            y: 1.4,
-                            z: 1.4,
-                            duration: 0.6,
-                            ease: 'expo.out'
-                        });
-                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(innerRef.current?.scale || {}, {
-                            x: 1.2,
-                            y: 1.2,
-                            z: 1.2,
-                            duration: 0.6,
-                            ease: 'expo.out'
                         });
                     } else {
                         __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(pointRef.current || {}, {
-                            intensity: 1.6,
-                            duration: 0.45,
+                            intensity: 2,
+                            duration: 0.8,
                             ease: 'power2.out'
-                        });
-                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(meshRef.current?.scale || {}, {
-                            x: 1,
-                            y: 1,
-                            z: 1,
-                            duration: 0.6,
-                            ease: 'expo.out'
-                        });
-                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(innerRef.current?.scale || {}, {
-                            x: 1,
-                            y: 1,
-                            z: 1,
-                            duration: 0.6,
-                            ease: 'expo.out'
                         });
                     }
                 }
-            }["CoreOrb.useEffect.onSkill"];
-            window.addEventListener('skillHover', onSkill);
+            }["CoreOrb.useEffect.handleFocus"];
+            window.addEventListener('skillsFocus', handleFocus);
             return ({
-                "CoreOrb.useEffect": ()=>window.removeEventListener('skillHover', onSkill)
+                "CoreOrb.useEffect": ()=>window.removeEventListener('skillsFocus', handleFocus)
             })["CoreOrb.useEffect"];
         }
-    }["CoreOrb.useEffect"], []);
+    }["CoreOrb.useEffect"], [
+        animateIconVisibility,
+        animateOrbScale
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "CoreOrb.useEffect": ()=>{
+            const handleSkillHover = {
+                "CoreOrb.useEffect.handleSkillHover": (event)=>{
+                    const detail = event.detail;
+                    const key = detail?.key && skillIcons[detail.key] ? detail.key : null;
+                    if (key) {
+                        setActiveIconKey(key);
+                        const color = detail?.color || skillIcons[key].color;
+                        setIconColor(color);
+                        animateIconVisibility(true, color);
+                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(pointRef.current || {}, {
+                            intensity: 2.4,
+                            duration: 0.5,
+                            ease: 'power2.out'
+                        });
+                        animateOrbScale(1.35, 0.7);
+                    } else {
+                        setActiveIconKey(null);
+                        animateIconVisibility(false);
+                        __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(pointRef.current || {}, {
+                            intensity: skillsFocusRef.current ? 2 : 1.6,
+                            duration: 0.5,
+                            ease: 'power2.out'
+                        });
+                        animateOrbScale(skillsFocusRef.current ? 1.1 : 1, 0.7);
+                    }
+                }
+            }["CoreOrb.useEffect.handleSkillHover"];
+            window.addEventListener('skillHover', handleSkillHover);
+            return ({
+                "CoreOrb.useEffect": ()=>window.removeEventListener('skillHover', handleSkillHover)
+            })["CoreOrb.useEffect"];
+        }
+    }["CoreOrb.useEffect"], [
+        animateIconVisibility,
+        animateOrbScale
+    ]);
+    const activeIcon = activeIconKey ? skillIcons[activeIconKey] : null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("group", {
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$shapes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Sphere"], {
                 ref: meshRef,
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("sphereGeometry", {
-                        args: [
-                            3,
-                            128,
-                            128
-                        ]
-                    }, void 0, false, {
-                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 59,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$MeshTransmissionMaterial$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MeshTransmissionMaterial"], {
-                        color: "#0b1220",
-                        thickness: 1.8,
-                        chromaticAberration: 0.04,
-                        anisotropy: 0.1,
-                        roughness: 0.02,
-                        ior: 1.6,
-                        transmission: 0.95,
-                        samples: 10
-                    }, void 0, false, {
-                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 60,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
+                args: [
+                    3,
+                    64,
+                    64
+                ],
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$MeshTransmissionMaterial$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["MeshTransmissionMaterial"], {
+                    color: "#0b1220",
+                    thickness: 1.8,
+                    chromaticAberration: 0.04,
+                    anisotropy: 0.1,
+                    ior: 1.6,
+                    transmission: 0.95,
+                    samples: 10
+                }, void 0, false, {
+                    fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
+                    lineNumber: 137,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 58,
+                lineNumber: 136,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$shapes$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Sphere"], {
@@ -155,12 +235,12 @@ function CoreOrb() {
                     side: __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["BackSide"]
                 }, void 0, false, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                    lineNumber: 73,
+                    lineNumber: 149,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 72,
+                lineNumber: 148,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
@@ -174,7 +254,7 @@ function CoreOrb() {
                         ]
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 78,
+                        lineNumber: 153,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshStandardMaterial", {
@@ -184,13 +264,13 @@ function CoreOrb() {
                         roughness: 0.2
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 79,
+                        lineNumber: 154,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 77,
+                lineNumber: 152,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
@@ -205,7 +285,7 @@ function CoreOrb() {
                         ]
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 83,
+                        lineNumber: 158,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshBasicMaterial", {
@@ -214,13 +294,13 @@ function CoreOrb() {
                         opacity: 0.5
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 84,
+                        lineNumber: 159,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 82,
+                lineNumber: 157,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mesh", {
@@ -239,7 +319,7 @@ function CoreOrb() {
                         ]
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 88,
+                        lineNumber: 163,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshBasicMaterial", {
@@ -248,13 +328,49 @@ function CoreOrb() {
                         opacity: 0.3
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                        lineNumber: 89,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 87,
+                lineNumber: 162,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Billboard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Billboard"], {
+                follow: true,
+                position: [
+                    0,
+                    0,
+                    0
+                ],
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$drei$2f$core$2f$Text$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Text"], {
+                    ref: iconRef,
+                    fontSize: 0.8,
+                    anchorX: "center",
+                    anchorY: "middle",
+                    children: [
+                        activeIcon?.glyph || '',
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("meshBasicMaterial", {
+                            ref: iconMaterialRef,
+                            transparent: true,
+                            opacity: 0,
+                            color: iconColor,
+                            toneMapped: false
+                        }, void 0, false, {
+                            fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
+                            lineNumber: 170,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
+                    lineNumber: 168,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
+                lineNumber: 167,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pointLight", {
@@ -269,17 +385,17 @@ function CoreOrb() {
                 distance: 40
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-                lineNumber: 92,
+                lineNumber: 180,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/three/CoreOrb.tsx",
-        lineNumber: 57,
+        lineNumber: 135,
         columnNumber: 5
     }, this);
 }
-_s(CoreOrb, "fMNlLuN2Pu/MsGr4iM46qUV5omU=", false, function() {
+_s(CoreOrb, "/o0dyc33l3up76awepwx81CkN+c=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f40$react$2d$three$2f$fiber$2f$dist$2f$events$2d$1eccaf1c$2e$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__D__as__useFrame$3e$__["useFrame"]
     ];

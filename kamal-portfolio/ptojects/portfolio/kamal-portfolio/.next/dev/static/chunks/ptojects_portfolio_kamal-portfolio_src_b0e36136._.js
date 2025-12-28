@@ -2223,6 +2223,7 @@ function Skills() {
     const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const wordsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(new Map());
     const scrollTriggersRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])([]);
+    const skillsActiveRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(false);
     // Generate word positions with useMemo for performance
     const wordData = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
         "Skills.useMemo[wordData]": ()=>{
@@ -2258,6 +2259,25 @@ function Skills() {
             const section = sectionRef.current;
             const container = containerRef.current;
             if (!section || !container) return;
+            const setSectionActive = {
+                "Skills.useEffect.setSectionActive": (active)=>{
+                    skillsActiveRef.current = active;
+                    window.dispatchEvent(new CustomEvent('skillsFocus', {
+                        detail: {
+                            active
+                        }
+                    }));
+                    if (!active) {
+                        window.dispatchEvent(new CustomEvent('skillHover', {
+                            detail: {
+                                category: '',
+                                color: '',
+                                key: ''
+                            }
+                        }));
+                    }
+                }
+            }["Skills.useEffect.setSectionActive"];
             // Cleanup
             scrollTriggersRef.current.forEach({
                 "Skills.useEffect": (st)=>st.kill()
@@ -2311,6 +2331,24 @@ function Skills() {
                 }["Skills.useEffect.entranceSt"]
             });
             scrollTriggersRef.current.push(entranceSt);
+            const focusSt = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
+                trigger: section,
+                start: 'top 70%',
+                end: 'bottom top',
+                onEnter: {
+                    "Skills.useEffect.focusSt": ()=>setSectionActive(true)
+                }["Skills.useEffect.focusSt"],
+                onEnterBack: {
+                    "Skills.useEffect.focusSt": ()=>setSectionActive(true)
+                }["Skills.useEffect.focusSt"],
+                onLeave: {
+                    "Skills.useEffect.focusSt": ()=>setSectionActive(false)
+                }["Skills.useEffect.focusSt"],
+                onLeaveBack: {
+                    "Skills.useEffect.focusSt": ()=>setSectionActive(false)
+                }["Skills.useEffect.focusSt"]
+            });
+            scrollTriggersRef.current.push(focusSt);
             // The "Scanning Light" effect - words glow as they enter viewport center
             const scanTrigger = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
                 trigger: section,
@@ -2361,6 +2399,7 @@ function Skills() {
     // Hover handlers
     const handleWordHover = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Skills.useCallback[handleWordHover]": (index)=>{
+            if (!skillsActiveRef.current) return;
             const word = wordsRef.current.get(index);
             const data = wordData[index];
             if (!word || !data) return;
@@ -2377,7 +2416,8 @@ function Skills() {
             window.dispatchEvent(new CustomEvent('skillHover', {
                 detail: {
                     category: colors.label,
-                    color: colors.color
+                    color: colors.color,
+                    key: data.category
                 }
             }));
         }
@@ -2386,6 +2426,7 @@ function Skills() {
     ]);
     const handleWordLeave = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "Skills.useCallback[handleWordLeave]": (index)=>{
+            if (!skillsActiveRef.current) return;
             const word = wordsRef.current.get(index);
             const data = wordData[index];
             if (!word || !data) return;
@@ -2401,7 +2442,8 @@ function Skills() {
             window.dispatchEvent(new CustomEvent('skillHover', {
                 detail: {
                     category: '',
-                    color: ''
+                    color: '',
+                    key: ''
                 }
             }));
         }
@@ -2421,27 +2463,27 @@ function Skills() {
                         className: "absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#0b0d10] to-transparent z-10"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                        lineNumber: 279,
+                        lineNumber: 303,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0b0d10] to-transparent z-10"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                        lineNumber: 280,
+                        lineNumber: 304,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-[radial-gradient(ellipse_120%_30%_at_50%_50%,rgba(0,212,255,0.04)_0%,transparent_60%)] pointer-events-none"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                        lineNumber: 283,
+                        lineNumber: 307,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 278,
+                lineNumber: 302,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2456,14 +2498,14 @@ function Skills() {
                                     className: "w-12 h-px bg-gradient-to-r from-[#00d4ff] to-transparent"
                                 }, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                                    lineNumber: 290,
+                                    lineNumber: 314,
                                     columnNumber: 13
                                 }, this),
                                 "Technical Depth"
                             ]
                         }, void 0, true, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                            lineNumber: 289,
+                            lineNumber: 313,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -2472,7 +2514,7 @@ function Skills() {
                                 "The Stack That",
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                                    lineNumber: 295,
+                                    lineNumber: 319,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2480,13 +2522,13 @@ function Skills() {
                                     children: "Powers Innovation"
                                 }, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                                    lineNumber: 296,
+                                    lineNumber: 320,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                            lineNumber: 293,
+                            lineNumber: 317,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2494,18 +2536,18 @@ function Skills() {
                             children: "A constellation of technologies mastered through building real systems— from neural architectures to embedded firmware, from cloud infrastructure to real-time graphics."
                         }, void 0, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                            lineNumber: 298,
+                            lineNumber: 322,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                    lineNumber: 288,
+                    lineNumber: 312,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 287,
+                lineNumber: 311,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2527,48 +2569,48 @@ function Skills() {
                             children: word.text
                         }, `${word.text}-${index}`, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                            lineNumber: 313,
+                            lineNumber: 337,
                             columnNumber: 13
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                    lineNumber: 311,
+                    lineNumber: 335,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 307,
+                lineNumber: 331,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-1/3 -left-40 w-80 h-80 bg-[#00d4ff]/5 rounded-full blur-[120px] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 333,
+                lineNumber: 357,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute bottom-1/3 -right-40 w-80 h-80 bg-[#8b5cf6]/5 rounded-full blur-[120px] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 334,
+                lineNumber: 358,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-2/3 left-1/4 w-60 h-60 bg-[#00ffc8]/3 rounded-full blur-[100px] pointer-events-none"
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-                lineNumber: 335,
+                lineNumber: 359,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/SkillsSection.tsx",
-        lineNumber: 271,
+        lineNumber: 295,
         columnNumber: 5
     }, this);
 }
-_s(Skills, "PNaQJEDRCIrrU+ev0oL/ydUo2Ak=");
+_s(Skills, "Tsao7LBSkiK3omIfn/fPrMBHWG0=");
 _c = Skills;
 var _c;
 __turbopack_context__.k.register(_c, "Skills");
