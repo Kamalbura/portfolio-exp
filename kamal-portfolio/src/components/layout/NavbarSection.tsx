@@ -98,38 +98,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button - visible on all screen sizes */}
         <a
           href="#contact"
           onClick={(e) => handleNavClick(e, '#contact')}
-          className="hidden md:inline-flex magnetic-btn text-sm py-2 px-6"
+          className="magnetic-btn text-sm py-2 px-6"
           data-cursor="Contact"
         >
           <span>Let&apos;s Talk</span>
         </a>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden w-10 h-10 flex items-center justify-center text-[#f4f4f5]"
-          data-cursor="Menu"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
       </nav>
     </header>
   );

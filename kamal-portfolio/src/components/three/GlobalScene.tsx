@@ -102,7 +102,7 @@ function ParticleField() {
 // Camera Controller
 function CameraController() {
   const { camera } = useThree();
-  const { scrollProgress } = useSmoothScroll();
+  const { getScrollProgress } = useSmoothScroll();
   const targetRef = useRef({ x: 0, y: 0, z: 30 });
   const overrideRef = useRef<{x:number;y:number;z:number}|null>(null);
 
@@ -122,8 +122,8 @@ function CameraController() {
   }, []);
 
   useFrame(() => {
-    // Camera narrative based on scroll
-    const section = scrollProgress * 5; // 5 sections
+    // Camera narrative based on scroll (use getter for high-frequency access)
+    const section = getScrollProgress() * 5; // 5 sections
 
     if (section < 1) {
       // Hero: Wide shot
@@ -213,7 +213,7 @@ export default function GlobalScene() {
           powerPreference: 'high-performance',
         }}
         dpr={dpr}
-        frameloop="demand" // Render only when needed (performance boost)
+        frameloop="always"
       >
         <Suspense fallback={<SceneLoader />}>
           <SceneContent />

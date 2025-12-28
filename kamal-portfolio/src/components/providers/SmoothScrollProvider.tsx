@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, ReactNode, useCallback } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,11 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 interface SmoothScrollContextType {
   lenis: Lenis | null;
   scrollProgress: number;
+  getScrollProgress: () => number;
 }
 
 const SmoothScrollContext = createContext<SmoothScrollContextType>({
   lenis: null,
   scrollProgress: 0,
+  getScrollProgress: () => 0,
 });
 
 export const useSmoothScroll = () => useContext(SmoothScrollContext);
@@ -25,7 +27,14 @@ interface SmoothScrollProviderProps {
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  // High-frequency scroll value stored in ref (no re-renders)
+  const scrollProgressRef = useRef(0);
+  // Coarse section index for components that need React reactivity (0-5 sections)
+  const [currentSection, setCurrentSection] = useState(0);
+  const rafCallbackRef = useRef<((time: number) => void) | null>(null);
+
+  // Stable getter for high-frequency access (e.g., useFrame in R3F)
+  const getScrollProgress = useCallback(() => scrollProgressRef.current, []);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -43,15 +52,23 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', (e: { scroll: number; limit: number; velocity: number; direction: number; progress: number }) => {
-      setScrollProgress(e.progress);
+      // Update ref (no re-render)
+      scrollProgressRef.current = e.progress;
+      
+      // Only update React state when section boundary changes (coarse-grained)
+      const newSection = Math.floor(e.progress * 5); // 5 sections
+      setCurrentSection((prev) => (prev !== newSection ? newSection : prev));
+      
       ScrollTrigger.update();
     });
 
-    // Add Lenis to GSAP ticker for smooth synchronization
-    gsap.ticker.add((time) => {
+    // Store the callback so we can remove it properly
+    rafCallbackRef.current = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
 
+    // Add Lenis to GSAP ticker for smooth synchronization
+    gsap.ticker.add(rafCallbackRef.current);
     gsap.ticker.lagSmoothing(0);
 
     // Set up ScrollTrigger to use Lenis
@@ -82,15 +99,19 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (rafCallbackRef.current) {
+        gsap.ticker.remove(rafCallbackRef.current);
+      }
+      // Note: We do NOT kill all ScrollTriggers here - that's each component's responsibility
     };
   }, []);
 
+  // Derive scrollProgress from section for backwards compatibility
+  // Components needing precise values should use getScrollProgress()
+  const scrollProgress = currentSection / 5;
+
   return (
-    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollProgress }}>
+    <SmoothScrollContext.Provider value={{ lenis: lenisRef.current, scrollProgress, getScrollProgress }}>
       {children}
     </SmoothScrollContext.Provider>
   );

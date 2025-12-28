@@ -95,6 +95,8 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  // Store reference to this component's ScrollTrigger for scoped cleanup
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -121,14 +123,21 @@ export default function Projects() {
       },
     });
 
+    // Store reference to this component's ScrollTrigger
+    scrollTriggerRef.current = tl.scrollTrigger || null;
+
     tl.to(wrapper, {
       x: -scrollDistance,
       ease: 'none',
     });
 
-    // Cleanup
+    // Scoped cleanup: only kill this component's ScrollTrigger
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+      tl.kill();
     };
   }, []);
 
