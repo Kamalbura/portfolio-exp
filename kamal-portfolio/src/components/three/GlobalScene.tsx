@@ -1,16 +1,31 @@
 'use client';
 
-import { useRef, useMemo, Suspense, useEffect } from 'react';
+import { useRef, useMemo, Suspense, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Environment, Float } from '@react-three/drei';
 import CoreOrb from './CoreOrb';
 import * as THREE from 'three';
 import { useSmoothScroll } from '../providers/SmoothScrollProvider';
 
+// Adaptive particle count based on device capability
+function useAdaptiveParticleCount() {
+  const [count, setCount] = useState(5000);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const isLowEnd = window.innerWidth < 768 || 
+      (typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4);
+    
+    setCount(isMobile ? 2000 : isLowEnd ? 3500 : 5000);
+  }, []);
+
+  return count;
+}
+
 // Particle Field Component
 function ParticleField() {
   const pointsRef = useRef<THREE.Points>(null);
-  const count = 5000;
+  const count = useAdaptiveParticleCount();
 
   const geometry = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -51,7 +66,14 @@ function ParticleField() {
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
     geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
     return geo;
-  }, []);
+  }, [count]);
+
+  // Cleanup geometry on unmount
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+    };
+  }, [geometry]);
 
   useFrame((state) => {
     if (pointsRef.current) {
@@ -171,16 +193,27 @@ function SceneLoader() {
 
 // Main Global Scene
 export default function GlobalScene() {
+  const [dpr, setDpr] = useState<[number, number]>([1, 2]);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const isLowEnd = typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4;
+    
+    // Adaptive DPR: mobile gets 1, desktop gets up to 2
+    setDpr(isMobile || isLowEnd ? [1, 1] : [1, 2]);
+  }, []);
+
   return (
     <div className="global-canvas">
       <Canvas
         camera={{ position: [0, 0, 30], fov: 60 }}
         gl={{
-          antialias: true,
+          antialias: !window.matchMedia('(max-width: 768px)').matches,
           alpha: true,
           powerPreference: 'high-performance',
         }}
-        dpr={[1, 2]}
+        dpr={dpr}
+        frameloop="demand" // Render only when needed (performance boost)
       >
         <Suspense fallback={<SceneLoader />}>
           <SceneContent />

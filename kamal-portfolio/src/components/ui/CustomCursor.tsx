@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
@@ -14,6 +12,17 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement | null>(null);
   const cursorDotRef = useRef<HTMLDivElement | null>(null);
   const cursorTextRef = useRef<HTMLDivElement | null>(null);
+
+  // Check if custom cursor should be enabled
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  useEffect(() => {
+    // Check for fine pointer (desktop) and user preference for motion
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    setIsEnabled(hasFinePointer && !prefersReducedMotion);
+  }, []);
 
   // UI state (non-position)
   const [hoverText, setHoverText] = useState<string>('');
@@ -30,6 +39,9 @@ export default function CustomCursor() {
   const setOuterY = useRef<any>(null);
   const setDotX = useRef<any>(null);
   const setDotY = useRef<any>(null);
+
+  // Don't render if disabled
+  if (!isEnabled) return null;
 
   useEffect(() => {
     const cursor = cursorRef.current;

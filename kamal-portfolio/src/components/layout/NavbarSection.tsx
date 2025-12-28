@@ -112,12 +112,15 @@ export default function Navbar() {
         <button
           className="md:hidden w-10 h-10 flex items-center justify-center text-[#f4f4f5]"
           data-cursor="Menu"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
         >
           <svg
             className="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"

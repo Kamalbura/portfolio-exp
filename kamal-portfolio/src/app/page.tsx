@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider';
 import Navbar from '@/components/layout/NavbarSection';
 import Footer from '@/components/layout/FooterSection';
 import Hero from '@/components/sections/Hero';
@@ -18,11 +17,6 @@ const GlobalScene = dynamic(() => import('@/components/three/GlobalScene'), {
   loading: () => null,
 });
 
-const CustomCursor = dynamic(() => import('@/components/ui/CustomCursor'), {
-  ssr: false,
-  loading: () => null,
-});
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,20 +27,17 @@ export default function Home() {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <SmoothScrollProvider>
-        <CustomCursor />
-        <GlobalScene />
-        <Navbar />
-        <main className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-          <Hero isLoaded={!isLoading} />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Contact />
-        </main>
-        <Footer />
-      </SmoothScrollProvider>
+      <GlobalScene />
+      <Navbar />
+      <main className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+        <Hero isLoaded={!isLoading} />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

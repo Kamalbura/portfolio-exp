@@ -1,0 +1,9 @@
+# robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://kamalbura.com/sitemap.xml
+
+# Crawl-delay (optional - helps with load management)
+Crawl-delay: 0.5

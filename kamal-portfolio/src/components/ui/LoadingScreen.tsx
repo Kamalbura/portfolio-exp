@@ -10,7 +10,13 @@ interface ParticleMorphProps {
 
 function ParticleMorph({ onComplete }: ParticleMorphProps) {
   const pointsRef = useRef<THREE.Points>(null);
-  const count = 15000;
+  
+  // Adaptive particle count - loading screen should be lighter
+  const count = useMemo(() => {
+    if (typeof window === 'undefined') return 8000;
+    return window.innerWidth < 768 ? 5000 : 8000;
+  }, []);
+  
   const [phase, setPhase] = useState<'sphere' | 'morphing' | 'text' | 'fadeOut'>('sphere');
   const startTimeRef = useRef(0);
   const textPositionsRef = useRef<Float32Array | null>(null);
