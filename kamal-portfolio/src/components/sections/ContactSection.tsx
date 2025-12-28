@@ -48,14 +48,14 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative py-32 lg:py-48 overflow-hidden"
+      className="relative section-spacing overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-[#00d4ff]/5 via-transparent to-transparent rounded-full" />
       </div>
 
-      <div className="container relative">
+      <div className="container relative max-w-5xl">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left column - Info */}
           <div>

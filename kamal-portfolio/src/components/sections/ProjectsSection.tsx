@@ -105,12 +105,20 @@ export default function Projects() {
 
     if (!section || !container || !wrapper) return;
 
-    // Calculate total scroll distance
-    const totalWidth = wrapper.scrollWidth;
     const viewportWidth = window.innerWidth;
-    const scrollDistance = totalWidth - viewportWidth;
+    const isMobile = viewportWidth < 900;
 
-    // Horizontal scroll animation
+    const totalWidth = wrapper.scrollWidth;
+    const scrollDistance = Math.max(0, totalWidth - viewportWidth);
+
+    // For mobile and short tracks, allow native horizontal scroll instead of pinning
+    if (isMobile || scrollDistance === 0) {
+      container.classList.add('overflow-x-auto', 'snap-x', 'snap-mandatory');
+      return () => {
+        container.classList.remove('overflow-x-auto', 'snap-x', 'snap-mandatory');
+      };
+    }
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -123,7 +131,6 @@ export default function Projects() {
       },
     });
 
-    // Store reference to this component's ScrollTrigger
     scrollTriggerRef.current = tl.scrollTrigger || null;
 
     tl.to(wrapper, {
@@ -131,7 +138,6 @@ export default function Projects() {
       ease: 'none',
     });
 
-    // Scoped cleanup: only kill this component's ScrollTrigger
     return () => {
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
@@ -145,10 +151,10 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative overflow-hidden"
+      className="relative overflow-hidden section-spacing"
     >
       {/* Header - Fixed during scroll */}
-      <div className="absolute top-12 left-0 right-0 z-20 container">
+      <div className="absolute top-16 md:top-20 left-0 right-0 z-20 container">
         <FadeIn>
           <span className="section-label">Portfolio</span>
         </FadeIn>
@@ -160,10 +166,13 @@ export default function Projects() {
       </div>
 
       {/* Horizontal scroll container */}
-      <div ref={containerRef} className="h-screen flex items-center pt-32">
+      <div
+        ref={containerRef}
+        className="min-h-[80vh] md:min-h-screen md:h-[90vh] flex items-center pt-28 md:pt-32"
+      >
         <div
           ref={wrapperRef}
-          className="horizontal-scroll-container pl-[5vw]"
+          className="horizontal-scroll-container pl-[5vw] pr-[10vw] md:pr-[16vw] snap-x snap-mandatory md:snap-none"
         >
           {projects.map((project, index) => {
             const colors = colorMap[project.color as keyof typeof colorMap];
@@ -171,7 +180,7 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className={`project-card glass-card ${colors.glow} transition-shadow duration-500`}
+                className={`project-card glass-card ${colors.glow} transition-shadow duration-500 snap-start`}
               >
                 {/* Background gradient */}
                 <div

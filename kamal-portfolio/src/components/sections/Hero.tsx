@@ -216,7 +216,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#0b0d10] to-transparent pointer-events-none z-[5]" />
 
       {/* Content */}
-      <div className="hero-content container text-center relative z-10">
+      <div className="hero-content container text-center relative z-10 max-w-4xl">
         {/* Pre-title badge */}
         <div 
           ref={badgeRef}

@@ -40,10 +40,9 @@ export default function CustomCursor() {
   const setDotX = useRef<any>(null);
   const setDotY = useRef<any>(null);
 
-  // Don't render if disabled
-  if (!isEnabled) return null;
-
+  // NOTE: keep hooks stable — guard inside effects rather than early returning
   useEffect(() => {
+    if (!isEnabled) return;
     const cursor = cursorRef.current;
     const dot = cursorDotRef.current;
     if (!cursor || !dot) return;
@@ -79,9 +78,10 @@ export default function CustomCursor() {
     return () => {
       window.removeEventListener('mousemove', onFirstMove);
     };
-  }, []);
+  }, [isEnabled]);
 
   useEffect(() => {
+    if (!isEnabled) return;
     const tick = () => {
       // If mouse not initialized yet, skip
       if (!mouse.current.initialized) return;
@@ -105,10 +105,11 @@ export default function CustomCursor() {
     return () => {
       gsap.ticker.remove(tick);
     };
-  }, []);
+  }, [isEnabled]);
 
   // Mouse move subscription updates the mouse ref only
   useEffect(() => {
+    if (!isEnabled) return;
     const onMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
@@ -131,10 +132,11 @@ export default function CustomCursor() {
       window.removeEventListener('mousedown', onDown);
       window.removeEventListener('mouseup', onUp);
     };
-  }, [isSkillHover, hoverText]);
+  }, [isEnabled, isSkillHover, hoverText]);
 
   // Interactive element hover handlers (scale cursor without changing position refs)
   useEffect(() => {
+    if (!isEnabled) return;
     const handleMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
       const text = (target.dataset && (target.dataset.cursorText || target.dataset.cursor)) || '';
@@ -177,10 +179,11 @@ export default function CustomCursor() {
       });
       observer.disconnect();
     };
-  }, []);
+  }, [isEnabled]);
 
   // Skill hover event listener (for category-aware cursor)
   useEffect(() => {
+    if (!isEnabled) return;
     const onSkill = (e: Event) => {
       const ev = e as CustomEvent<SkillHoverDetail>;
       const { category, color } = ev.detail || { category: '', color: '' };
@@ -197,7 +200,7 @@ export default function CustomCursor() {
 
     window.addEventListener('skillHover', onSkill as EventListener);
     return () => window.removeEventListener('skillHover', onSkill as EventListener);
-  }, []);
+  }, [isEnabled]);
 
   return (
     <>

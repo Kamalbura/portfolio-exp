@@ -294,25 +294,30 @@ main {
   transform-style: preserve-3d;
 }
 
-/* Section Spacing */
+/* Section positioning only; spacing is handled per-section for predictability */
 section {
   position: relative;
-  padding: var(--section-padding) 0;
 }
 
 /* Container */
 .container {
   width: 100%;
-  max-width: var(--container-max);
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 clamp(1.5rem, 5vw, 4rem);
 }
 
-/* Small default spacing for direct children inside containers to avoid collapsed/zero margins */
-.container > * + * {
-  /* add vertical rhythm between sibling children only to avoid
-     overriding components that expect reset margins */
-  margin-top: var(--container-gap);
+.container.max-w-5xl {
+  max-width: 64rem;
+}
+
+.container.max-w-4xl {
+  max-width: 56rem;
+}
+
+/* Consistent vertical spacing helper for sections */
+.section-spacing {
+  padding: clamp(4rem, 8vw, 7rem) 0;
 }
 
 /* Respect user preference for reduced motion: disable heavy animations */
@@ -397,11 +402,10 @@ section {
 /* Project Cards */
 .project-card {
   flex-shrink: 0;
-  width: 65vw;
-  max-width: 900px;
-  height: 65vh;
-  max-height: 550px;
-  margin-right: 3rem;
+  width: clamp(260px, 68vw, 760px);
+  height: clamp(340px, 58vh, 520px);
+  max-height: 540px;
+  margin-right: clamp(1.25rem, 3vw, 2.5rem);
   border-radius: 1.5rem;
   position: relative;
   overflow: hidden;
@@ -412,8 +416,37 @@ section {
   transform: scale(1.02);
 }
 
-.project-card:last-child {
-  margin-right: 0;
+@media (max-width: 1024px) {
+  .project-card {
+    width: 75vw;
+    height: 52vh;
+    max-height: 480px;
+    margin-right: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    width: 80vw;
+    height: 360px;
+    max-height: none;
+    margin-right: 1rem;
+  }
+  
+  .project-card h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .project-card p {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-card {
+    width: 85vw;
+    height: 340px;
+  }
 }
 
 /* Glow Effects */
@@ -471,7 +504,7 @@ section {
 }
 
 .hero-title {
-  font-size: clamp(3rem, 12vw, 10rem);
+  font-size: clamp(2.5rem, 10vw, 10rem);
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.04em;

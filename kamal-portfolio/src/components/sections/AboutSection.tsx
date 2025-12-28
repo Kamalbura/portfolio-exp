@@ -212,7 +212,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-32 lg:py-48 overflow-hidden"
+      className="relative section-spacing overflow-hidden"
     >
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none">
@@ -220,7 +220,7 @@ export default function About() {
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container relative">
+      <div className="container relative max-w-5xl">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-20 items-start">
           {/* Content Column */}
           <div className="lg:col-span-7 order-2 lg:order-1">
@@ -339,14 +339,14 @@ export default function About() {
               </div>
             </div>
 
-            {/* Floating badges */}
-            <div className="absolute -top-4 right-8 lg:right-0 glass rounded-2xl p-4 border-beam animate-float">
+            {/* Floating badges (hidden on small screens to avoid overlap) */}
+            <div className="hidden md:block absolute -top-4 right-8 lg:right-0 glass rounded-2xl p-4 border-beam animate-float">
               <span className="text-3xl">🤖</span>
             </div>
-            <div className="absolute top-1/3 -left-4 lg:-left-8 glass rounded-2xl p-4 glow-iot animate-float" style={{ animationDelay: '-2s' }}>
+            <div className="hidden md:block absolute top-1/3 -left-4 lg:-left-8 glass rounded-2xl p-4 glow-iot animate-float" style={{ animationDelay: '-2s' }}>
               <span className="text-3xl">📡</span>
             </div>
-            <div className="absolute bottom-1/3 right-4 lg:-right-4 glass rounded-2xl p-4 glow-systems animate-float" style={{ animationDelay: '-4s' }}>
+            <div className="hidden md:block absolute bottom-1/3 right-4 lg:-right-4 glass rounded-2xl p-4 glow-systems animate-float" style={{ animationDelay: '-4s' }}>
               <span className="text-3xl">⚡</span>
             </div>
           </div>

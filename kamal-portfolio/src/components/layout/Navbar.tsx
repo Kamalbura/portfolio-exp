@@ -7,7 +7,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 gsap.registerPlugin(ScrollToPlugin);
 
 const navLinks = [
-  { name: 'Home', href: '#hero' },
+  { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
@@ -18,7 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +60,7 @@ export default function Navbar() {
         isScrolled ? 'py-4' : 'py-6'
       }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="container">
         <div
           className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 ${
             isScrolled ? 'glass' : ''
@@ -68,7 +68,7 @@ export default function Navbar() {
         >
           <a
             href="#hero"
-            onClick={(e) => handleNavClick(e, '#hero')}
+            onClick={(e) => handleNavClick(e, '#home')}
             className="text-2xl font-bold text-gradient"
           >
             KB

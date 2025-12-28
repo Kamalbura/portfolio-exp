@@ -64,7 +64,7 @@ export default function Navbar() {
         isScrolled ? 'py-2 glass-strong' : 'py-3 bg-transparent'
       }`}
     >
-      <nav className="container flex items-center justify-between pl-2 pr-2 sm:pl-6 sm:pr-6">
+      <nav className="container flex items-center justify-between gap-4">
         {/* Logo */}
         <a
           href="#home"

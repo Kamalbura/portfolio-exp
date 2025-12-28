@@ -271,7 +271,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative min-h-[140vh] py-32 lg:py-40 overflow-hidden"
+      className="relative min-h-[100vh] md:min-h-[120vh] section-spacing overflow-hidden"
       data-section="skills"
     >
       {/* Gradient overlays for depth */}
@@ -284,18 +284,18 @@ export default function Skills() {
       </div>
 
       {/* Section Header - Asymmetric positioning */}
-      <div className="container relative z-20 mb-20">
-        <div className="max-w-2xl">
+      <div className="container relative z-20 mb-16 lg:mb-20 max-w-5xl">
+        <div className="w-full text-center">
           <span className="section-label inline-flex items-center gap-3 mb-4">
             <span className="w-12 h-px bg-gradient-to-r from-[#00d4ff] to-transparent" />
             Technical Depth
           </span>
-          <h2 className="section-title text-left">
+          <h2 className="section-title">
             The Stack That
             <br />
             <span className="text-gradient">Powers Innovation</span>
           </h2>
-          <p className="section-description mt-6 text-left">
+          <p className="section-description mt-6 mx-auto text-center">
             A constellation of technologies mastered through building real systems—
             from neural architectures to embedded firmware, from cloud infrastructure 
             to real-time graphics.
@@ -306,14 +306,14 @@ export default function Skills() {
       {/* The Wall of Words */}
       <div 
         ref={containerRef}
-        className="relative w-full min-h-[70vh] px-4 md:px-8 lg:px-12"
+        className="relative w-full min-h-[70vh] flex justify-center"
       >
-        <div className="word-wall relative w-full flex flex-wrap items-center justify-center gap-x-4 gap-y-3 md:gap-x-8 md:gap-y-5 lg:gap-x-10 lg:gap-y-6 max-w-[1600px] mx-auto">
+        <div className="skill-wall relative max-w-5xl mx-auto px-4 md:px-8 lg:px-12 text-center">
           {wordData.map((word, index) => (
             <span
               key={`${word.text}-${index}`}
               ref={(el) => setWordRef(el, index)}
-              className="skill-word relative cursor-default select-none font-semibold tracking-tight text-[#f4f4f5] transition-colors will-change-transform whitespace-nowrap"
+              className="skill-word relative cursor-default select-none font-semibold tracking-tight text-[#f4f4f5] transition-colors will-change-transform whitespace-normal break-words"
               style={{
                 fontSize: `clamp(${word.fontSize * 0.5}rem, ${word.fontSize * 0.8}vw, ${word.fontSize}rem)`,
                 transform: `rotate(${word.rotation}deg)`,
@@ -327,19 +327,6 @@ export default function Skills() {
             </span>
           ))}
         </div>
-      </div>
-
-      {/* Category Legend - Bottom right */}
-      <div className="absolute bottom-12 right-8 z-20 hidden lg:flex flex-col gap-3">
-        {Object.entries(categoryColors).map(([key, value]) => (
-          <div key={key} className="flex items-center gap-3 text-xs">
-            <span 
-              className="w-2 h-2 rounded-full"
-              style={{ backgroundColor: value.color, boxShadow: `0 0 10px ${value.color}` }}
-            />
-            <span className="text-[#52525b] uppercase tracking-widest font-medium">{value.label}</span>
-          </div>
-        ))}
       </div>
 
       {/* Floating accent lights */}

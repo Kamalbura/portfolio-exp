@@ -122,7 +122,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative py-32 lg:py-48 overflow-hidden"
+      className="relative section-spacing overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -130,7 +130,7 @@ export default function Experience() {
         <div className="absolute bottom-1/3 -left-32 w-64 h-64 bg-[#8b5cf6]/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative">
+      <div className="container relative max-w-5xl">
         <div className="text-center mb-20">
           <FadeIn>
             <span className="section-label">Journey</span>
@@ -148,9 +148,9 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div ref={timelineRef} className="relative max-w-4xl mx-auto">
+        <div ref={timelineRef} className="relative max-w-4xl mx-auto px-2 sm:px-4">
           {/* Vertical line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-[#2a2d34]">
+          <div className="absolute left-6 sm:left-8 md:left-1/2 top-0 bottom-0 w-px bg-[#2a2d34]">
             <div
               className="timeline-line absolute inset-0 bg-gradient-to-b from-[#00d4ff] via-[#00ffc8] to-[#8b5cf6] origin-top"
               style={{ transform: 'scaleY(0)' }}
@@ -172,12 +172,12 @@ export default function Experience() {
                 >
                   {/* Dot */}
                   <div
-                    className={`absolute left-0 md:left-1/2 w-4 h-4 -translate-x-1/2 rounded-full ${colors.dot} ${colors.glow} z-10`}
+                    className={`absolute left-6 sm:left-8 md:left-1/2 w-4 h-4 -translate-x-1/2 rounded-full ${colors.dot} ${colors.glow} z-10`}
                   />
 
                   {/* Content */}
                   <div
-                    className={`w-full md:w-1/2 pl-8 md:pl-0 ${
+                    className={`w-full md:w-1/2 pl-8 sm:pl-10 md:pl-0 ${
                       isLeft ? 'md:pr-16' : 'md:pl-16'
                     }`}
                   >
