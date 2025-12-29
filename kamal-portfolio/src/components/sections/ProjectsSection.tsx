@@ -204,35 +204,35 @@ export default function Projects() {
                     </div>
                   )}
                   {/* Top section */}
-                  <div className="flex-grow">
-                    <div className="flex items-center justify-between mb-4 gap-4">
+                  <div className="flex-grow flex flex-col items-center pt-4">
+                    <div className="flex items-center justify-center w-full mb-4 gap-3">
                       <span
                         className={`text-xs px-3 py-1 rounded-full border ${colors.tag} flex-shrink-0`}
                       >
                         {project.category}
                       </span>
-                      <span className="text-[#52525b] text-sm flex-shrink-0">
+                      <span className="text-[#52525b] text-sm flex-shrink-0 font-serif">
                         0{index + 1}
                       </span>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4 text-[#f4f4f5] line-clamp-2">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-serif tracking-wide font-medium mb-3 md:mb-4 text-[#f4f4f5] line-clamp-2 text-center px-4">
                       {project.title}
                     </h3>
 
-                    <p className="text-[#a1a1aa] text-sm md:text-base leading-relaxed line-clamp-2 md:line-clamp-3">
+                    <p className="text-[#a1a1aa] text-sm md:text-base leading-relaxed line-clamp-2 md:line-clamp-3 text-center px-4 font-light">
                       {project.description}
                     </p>
                   </div>
 
                   {/* Bottom section */}
-                  <div className="flex-shrink-0 mt-4 md:mt-6">
+                  <div className="flex-shrink-0 mt-4 md:mt-6 flex flex-col items-center">
                     {/* Tech stack */}
-                    <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
+                    <div className="flex flex-wrap justify-center gap-2 mb-4 md:mb-6 px-4">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-2 py-1 rounded bg-[#1a1d24] text-[#a1a1aa] border border-[#2a2d34]"
+                          className="text-xs px-3 py-1 rounded-full bg-[#1a1d24] text-[#a1a1aa] border border-[#2a2d34] tracking-wide"
                         >
                           {tech}
                         </span>

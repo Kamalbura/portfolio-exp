@@ -181,22 +181,22 @@ export default function Experience() {
                       isLeft ? 'md:pr-16' : 'md:pl-16'
                     }`}
                   >
-                    <div className="glass-card rounded-xl p-6 group hover:scale-[1.02] transition-transform duration-500">
+                    <div className="border-b border-white/10 pb-8 group transition-all duration-500 hover:border-white/20">
                       {/* Header */}
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-2">
                         <div>
-                          <h3 className="text-xl font-semibold text-[#f4f4f5] mb-1">
+                          <h3 className="text-xl font-serif tracking-wide text-[#f4f4f5] mb-1 group-hover:text-[#00d4ff] transition-colors">
                             {exp.role}
                           </h3>
-                          <p className={`text-sm ${colors.tag}`}>{exp.company}</p>
+                          <p className={`text-xs uppercase tracking-widest font-medium ${colors.tag.split(' ')[0]}`}>{exp.company}</p>
                         </div>
-                        <span className="text-xs text-[#71717a] whitespace-nowrap">
+                        <span className="text-xs text-[#71717a] font-mono pt-1">
                           {exp.period}
                         </span>
                       </div>
 
                       {/* Description */}
-                      <p className="text-[#a1a1aa] text-sm leading-relaxed mb-4">
+                      <p className="text-[#a1a1aa] text-sm leading-relaxed mb-6 font-light">
                         {exp.description}
                       </p>
 
@@ -205,9 +205,9 @@ export default function Experience() {
                         {exp.highlights.map((highlight, i) => (
                           <li
                             key={i}
-                            className="flex items-center gap-2 text-sm text-[#71717a]"
+                            className="flex items-center gap-3 text-sm text-[#71717a]"
                           >
-                            <span className={`w-1.5 h-1.5 rounded-full ${colors.dot}`} />
+                            <span className={`w-1 h-1 rounded-full ${colors.dot}`} />
                             {highlight}
                           </li>
                         ))}

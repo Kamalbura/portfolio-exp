@@ -13,8 +13,8 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
   
   // Adaptive particle count - loading screen should be lighter
   const count = useMemo(() => {
-    if (typeof window === 'undefined') return 4000;
-    return window.innerWidth < 768 ? 2500 : 4000;
+    if (typeof window === 'undefined') return 8000;
+    return window.innerWidth < 768 ? 4000 : 8000;
   }, []);
   
   const [phase, setPhase] = useState<'sphere' | 'morphing' | 'text' | 'fadeOut'>('sphere');
@@ -24,14 +24,16 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
 
   // Create text positions from canvas
   const createTextPoints = useCallback(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const text = isMobile ? 'KB' : 'KAMAL BURA';
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return new Float32Array(count * 3);
 
-    const fontSize = isMobile ? 72 : 120;
+    const fontSize = isMobile ? 80 : 120;
     const padding = 40;
+    // Adjust scale factor to ensure text fits within camera view
+    const scaleFactor = isMobile ? 14 : 32;
 
     ctx.font = `bold ${fontSize}px Arial, sans-serif`;
     const textMetrics = ctx.measureText(text);
@@ -39,7 +41,7 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
     const textHeight = fontSize;
 
     canvas.width = textWidth + padding * 2;
-    canvas.height = textHeight + padding * 2;
+    canvas.height = textHeight + padding * 4; // Increased height to prevent clipping
 
     ctx.fillStyle = 'white';
     ctx.font = `bold ${fontSize}px Arial, sans-serif`;
@@ -57,10 +59,10 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
         const x = (i / 4) % canvas.width;
         const y = Math.floor((i / 4) / canvas.width);
         
-        if (Math.random() < 0.25) {
+        if (Math.random() < 0.20) { // Reduced sampling rate to ensure we fit in particle count
           points.push({
-            x: (x - canvas.width / 2) / 12,
-            y: -(y - canvas.height / 2) / 12
+            x: (x - canvas.width / 2) / scaleFactor,
+            y: -(y - canvas.height / 2) / scaleFactor
           });
         }
       }
@@ -75,10 +77,10 @@ function ParticleMorph({ onComplete }: ParticleMorphProps) {
         positions[i * 3 + 2] = (Math.random() - 0.5) * 0.5;
       } else {
         const angle = Math.random() * Math.PI * 2;
-        const radius = 15 + Math.random() * 20;
+        const radius = 10 + Math.random() * 10;
         positions[i * 3] = Math.cos(angle) * radius;
         positions[i * 3 + 1] = Math.sin(angle) * radius;
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 15;
+        positions[i * 3 + 2] = (Math.random() - 0.5) * 5;
       }
     }
 
@@ -248,7 +250,7 @@ export default function LoadingScreen({ onComplete: externalOnComplete }: Loadin
       }`}
     >
       <Canvas
-        camera={{ position: [0, 0, 25], fov: 75 }}
+        camera={{ position: [0, 0, 30], fov: 75 }}
         gl={{ antialias: true, alpha: false }}
         style={{ background: '#0a0a0f' }}
       >

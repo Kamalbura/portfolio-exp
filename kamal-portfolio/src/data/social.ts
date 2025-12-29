@@ -18,6 +18,12 @@ export const socialLinks = [
     icon: 'TW' 
   },
   {
+    name: 'WhatsApp',
+    href: 'https://wa.me/919491862415',
+    username: '+91 94918 62415',
+    icon: 'WA'
+  },
+  {
     name: 'Email',
     href: 'mailto:burakamal13@gmail.com',
     username: 'burakamal13@gmail.com',
