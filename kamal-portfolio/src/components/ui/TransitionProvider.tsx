@@ -32,17 +32,17 @@ export default function TransitionProvider({ children }: Props) {
     // Prevent scroll during transition
     try { lenis?.stop(); } catch (e) {}
 
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+    const tl = gsap.timeline({ defaults: { ease: 'power4.inOut' } });
 
     // Simple cinematic curtain: two panels slide in from opposite sides
     tl.set([overlay, overlay2], { autoAlpha: 1, yPercent: 0 });
     // Animate page content slightly (fade + slide up) to sync with curtain
     const page = document.querySelector('main');
     if (page) {
-      tl.to(page, { y: 20, opacity: 0, duration: 0.45, ease: 'expo.out' }, 0);
+      tl.to(page, { y: 20, opacity: 0, duration: 0.8, ease: 'power4.inOut' }, 0);
     }
-    tl.fromTo(overlay, { xPercent: -100 }, { xPercent: 0, duration: 0.5 }, 0);
-    tl.fromTo(overlay2, { xPercent: 100 }, { xPercent: 0, duration: 0.5 }, 0);
+    tl.fromTo(overlay, { xPercent: -100 }, { xPercent: 0, duration: 1.2 }, 0);
+    tl.fromTo(overlay2, { xPercent: 100 }, { xPercent: 0, duration: 1.2 }, 0);
 
     // Fade out content (consumer should call navigation after this resolves)
     await tl.then();

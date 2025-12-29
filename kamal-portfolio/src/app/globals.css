@@ -79,6 +79,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-family: var(--font-inter), sans-serif;
+}
+
 html.lenis,
 html.lenis body {
   height: auto;
@@ -339,7 +343,7 @@ main {
 }
 
 .hero-name-muted {
-  color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary);
   text-shadow: none;
 }
 

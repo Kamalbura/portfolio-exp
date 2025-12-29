@@ -74,12 +74,12 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       y: 0,
       opacity: 1,
       rotateX: 0,
-      duration: 1.2,
+      duration: 1.8,
       stagger: {
-        each: 0.03,
+        each: 0.05,
         from: 'start',
       },
-      ease: 'power3.out',
+      ease: 'power4.out',
     });
 
     // Subtitle entrance
@@ -87,8 +87,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       tl.to(subtitle, {
         opacity: 1,
         y: 0,
-        duration: 1,
-      }, '-=0.8');
+        duration: 1.5,
+      }, '-=1.2');
     }
 
     // CTA buttons entrance
@@ -96,8 +96,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       tl.to(cta, {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-      }, '-=0.6');
+        duration: 1.2,
+      }, '-=1.0');
     }
 
     // Scroll indicator
@@ -163,11 +163,11 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         {/* Main title with perspective for 3D effect */}
         <h1
           ref={titleRef}
-            className="hero-title mb-8"
+          className="hero-title mb-8"
           style={{ perspective: '1000px' }}
         >
-          <span className="block text-[#f4f4f5]">KAMAL</span>
-            <span className="block hero-name-muted">BURA</span>
+          <span className="inline-block text-[#f4f4f5]">KAMAL </span>
+          <span className="inline-block text-[#f4f4f5] ml-6"> BURA</span>
         </h1>
 
         {/* Subtitle */}

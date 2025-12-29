@@ -1,6 +1,6 @@
  'use client';
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { FadeIn } from '../ui/TextAnimations';
 
@@ -48,10 +48,44 @@ const socials: { name: string; href: string; icon: ReactNode }[] = [
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    const form = formRef.current;
+    if (!form) return;
+    const fd = new FormData(form);
+    const name = (fd.get('name') as string) || '';
+    const email = (fd.get('email') as string) || '';
+    const subject = (fd.get('subject') as string) || '';
+    const message = (fd.get('message') as string) || '';
+
+    const to = 'burakamal13@gmail.com';
+    const bodyPlain = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyPlain)}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyPlain)}`;
+
+    setStatus('sending');
+
+    // Try opening Gmail compose in a new tab; if blocked/fails, fallback to mailto
+    let opened = false;
+    try {
+      const w = window.open(gmailUrl, '_blank');
+      if (w) opened = true;
+    } catch (err) {
+      opened = false;
+    }
+
+    if (!opened) {
+      // Fallback to mailto which opens the user's default mail client
+      window.location.href = mailto;
+    }
+
+    // Provide quick UX feedback — user still needs to send the message from their mail client
+    setStatus('sent');
+
+    // Clear status after a short delay
+    setTimeout(() => setStatus('idle'), 4000);
   };
 
   return (
@@ -196,9 +230,18 @@ export default function Contact() {
                   />
                 </div>
 
-                <button type="submit" className="btn-liquid w-full py-4 rounded-xl text-white font-medium tracking-wide uppercase text-sm border border-white/10 hover:border-transparent transition-colors" data-cursor="Send">
-                  Send Message
+                <button
+                  type="submit"
+                  className="btn-liquid w-full py-4 rounded-xl text-white font-medium tracking-wide uppercase text-sm border border-white/10 hover:border-transparent transition-colors disabled:opacity-50"
+                  data-cursor="Send"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Opening compose…' : 'Send Message'}
                 </button>
+
+                {status === 'sent' && (
+                  <p className="mt-3 text-sm text-[#a1a1aa]">Compose window opened — please finish and send the email from your mail client.</p>
+                )}
               </form>
             </FadeIn>
           </div>

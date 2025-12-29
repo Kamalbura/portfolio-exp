@@ -664,6 +664,10 @@
     margin-top: calc(var(--spacing) * 2);
   }
 
+  .mt-3 {
+    margin-top: calc(var(--spacing) * 3);
+  }
+
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
@@ -738,6 +742,10 @@
 
   .ml-1 {
     margin-left: calc(var(--spacing) * 1);
+  }
+
+  .ml-6 {
+    margin-left: calc(var(--spacing) * 6);
   }
 
   .line-clamp-2 {
@@ -3016,6 +3024,10 @@ html {
   font-size: 16px;
 }
 
+body {
+  font-family: var(--font-inter), sans-serif;
+}
+
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -3266,7 +3278,7 @@ main {
 }
 
 .hero-name-muted {
-  color: #ffffff14;
+  color: var(--color-text-primary);
   text-shadow: none;
 }
 
