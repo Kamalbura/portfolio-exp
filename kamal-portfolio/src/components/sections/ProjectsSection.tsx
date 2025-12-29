@@ -125,10 +125,14 @@ export default function Projects() {
       };
     }
 
+    // Dynamic offset based on actual navbar height
+    const navbarHeight = document.querySelector('header')?.offsetHeight || 72;
+    const pinOffset = navbarHeight + 24; // navbar + buffer
+    
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top top+=96',
+        start: `top top+=${pinOffset}`,
         end: () => `+=${scrollDistance + 200}`, // Add buffer for hold
         pin: true,
         scrub: 1,

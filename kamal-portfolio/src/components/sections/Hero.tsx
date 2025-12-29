@@ -74,9 +74,9 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       y: 0,
       opacity: 1,
       rotateX: 0,
-      duration: 1.8,
+      duration: 1.0,
       stagger: {
-        each: 0.05,
+        each: 0.03,
         from: 'start',
       },
       ease: 'power4.out',
@@ -87,8 +87,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       tl.to(subtitle, {
         opacity: 1,
         y: 0,
-        duration: 1.5,
-      }, '-=1.2');
+        duration: 0.8,
+      }, '-=0.6');
     }
 
     // CTA buttons entrance
@@ -96,8 +96,8 @@ export default function Hero({ isLoaded = true }: HeroProps) {
       tl.to(cta, {
         opacity: 1,
         y: 0,
-        duration: 1.2,
-      }, '-=1.0');
+        duration: 0.6,
+      }, '-=0.5');
     }
 
     // Scroll indicator

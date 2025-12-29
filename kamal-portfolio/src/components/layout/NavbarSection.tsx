@@ -51,9 +51,11 @@ export default function Navbar() {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target && lenis) {
+      // Dynamic offset based on actual navbar height
+      const navbarHeight = document.querySelector('header')?.offsetHeight || 72;
       lenis.scrollTo(target as HTMLElement, {
-        offset: -96,
-        duration: 1.5,
+        offset: -navbarHeight - 24, // navbar height + buffer
+        duration: 1.2,
       });
     }
   };

@@ -339,7 +339,7 @@ export default function Skills() {
               ref={(el) => setWordRef(el, index)}
               className="skill-word relative cursor-default select-none font-semibold tracking-tight text-[#f4f4f5] transition-colors will-change-transform whitespace-normal break-words"
               style={{
-                fontSize: `clamp(${word.fontSize * 0.5}rem, ${word.fontSize * 0.8}vw, ${word.fontSize}rem)`,
+                fontSize: `clamp(${Math.max(0.75, word.fontSize * 0.55)}rem, ${word.fontSize * 0.9}vw, ${word.fontSize}rem)`,
                 transform: `rotate(${word.rotation}deg)`,
               }}
               data-category={word.category}
