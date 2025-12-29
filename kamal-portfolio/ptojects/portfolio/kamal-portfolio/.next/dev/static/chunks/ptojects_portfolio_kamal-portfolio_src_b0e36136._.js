@@ -79,7 +79,7 @@ function Navbar() {
         const target = document.querySelector(href);
         if (target && lenis) {
             lenis.scrollTo(target, {
-                offset: 0,
+                offset: -96,
                 duration: 1.5
             });
         }
@@ -536,138 +536,32 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kam
 ;
 ;
 function Footer() {
-    const currentYear = new Date().getFullYear();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-        className: "relative py-16 border-t border-[#1a1d24]",
+        className: "relative py-12 border-t border-[#1a1d24]/60",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "container",
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-col md:flex-row items-center justify-between gap-8",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex flex-col items-center md:items-start gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-2xl font-bold text-gradient",
-                                        children: "KB"
-                                    }, void 0, false, {
-                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                        lineNumber: 15,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-[#52525b] text-sm",
-                                        children: [
-                                            "© ",
-                                            currentYear,
-                                            " Kamal Bura. Crafted with precision."
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                        lineNumber: 16,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                lineNumber: 14,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                            lineNumber: 13,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
-                            delay: 0.1,
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-6",
-                                children: [
-                                    'About',
-                                    'Projects',
-                                    'Contact'
-                                ].map((link)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                        href: `#${link.toLowerCase()}`,
-                                        className: "text-[#71717a] hover:text-[#00d4ff] text-sm transition-colors duration-300",
-                                        children: link
-                                    }, link, false, {
-                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                        lineNumber: 26,
-                                        columnNumber: 17
-                                    }, this))
-                            }, void 0, false, {
-                                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                lineNumber: 24,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                            lineNumber: 23,
-                            columnNumber: 11
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
-                            delay: 0.2,
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-2",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "w-2 h-2 rounded-full bg-[#00ffc8] animate-pulse"
-                                    }, void 0, false, {
-                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                        lineNumber: 40,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-[#71717a] text-sm",
-                                        children: "Available for work"
-                                    }, void 0, false, {
-                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                        lineNumber: 41,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                                lineNumber: 39,
-                                columnNumber: 13
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                            lineNumber: 38,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                    lineNumber: 11,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "mt-12 pt-8 border-t border-[#1a1d24]/50",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-center text-[#52525b] text-xs",
-                        children: "Built with Next.js, Three.js & GSAP • Designed in Hyderabad, India"
-                    }, void 0, false, {
-                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                        lineNumber: 50,
-                        columnNumber: 11
-                    }, this)
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: "text-center text-[#5c5c66] text-sm tracking-[0.25em] uppercase",
+                    children: "All rights reserved Kamal Bura | burakamal.site"
                 }, void 0, false, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-                    lineNumber: 49,
-                    columnNumber: 9
+                    lineNumber: 10,
+                    columnNumber: 11
                 }, this)
-            ]
-        }, void 0, true, {
+            }, void 0, false, {
+                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
+                lineNumber: 9,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-            lineNumber: 10,
+            lineNumber: 8,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/layout/FooterSection.tsx",
-        lineNumber: 9,
+        lineNumber: 7,
         columnNumber: 5
     }, this);
 }
@@ -907,7 +801,7 @@ function Hero({ isLoaded = true }) {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "block text-gradient hero-name-contrast",
+                                className: "block hero-name-muted",
                                 children: "BURA"
                             }, void 0, false, {
                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/Hero.tsx",
@@ -1005,7 +899,7 @@ function Hero({ isLoaded = true }) {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "#projects",
-                                className: "magnetic-btn magnetic-btn-primary group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]",
+                                className: "magnetic-btn hero-cta hero-cta-primary group w-full sm:w-auto",
                                 "data-cursor": "View",
                                 "data-cursor-text": "View",
                                 children: [
@@ -1044,7 +938,7 @@ function Hero({ isLoaded = true }) {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                 href: "#contact",
-                                className: "magnetic-btn group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]",
+                                className: "magnetic-btn hero-cta hero-cta-secondary group w-full sm:w-auto",
                                 "data-cursor": "Contact",
                                 "data-cursor-text": "Contact",
                                 children: [
@@ -1222,9 +1116,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kam
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/gsap/index.js [app-client] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/gsap/ScrollTrigger.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$split$2d$type$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/split-type/dist/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/ptojects/portfolio/kamal-portfolio/node_modules/next/image.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -1270,6 +1166,7 @@ const techStack = [
 function About() {
     _s();
     const sectionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const headingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const paragraphsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const imageContainerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
@@ -1280,6 +1177,7 @@ function About() {
     const initAnimations = (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "About.useCallback[initAnimations]": ()=>{
             const section = sectionRef.current;
+            const container = containerRef.current;
             const heading = headingRef.current;
             const paragraphs = paragraphsRef.current;
             const imageContainer = imageContainerRef.current;
@@ -1361,12 +1259,11 @@ function About() {
                     }
                 }["About.useCallback[initAnimations]"]);
             }
-            // Image parallax and reveal
-            if (imageContainer) {
+            // Image reveal and pin-through scroll to hold the portrait in place
+            if (imageContainer && container) {
                 __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].set(imageContainer, {
                     opacity: 0,
-                    scale: 0.9,
-                    y: 60
+                    scale: 0.9
                 });
                 const imageSt = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
                     trigger: imageContainer,
@@ -1376,8 +1273,7 @@ function About() {
                             __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(imageContainer, {
                                 opacity: 1,
                                 scale: 1,
-                                y: 0,
-                                duration: 1.2,
+                                duration: 1.1,
                                 ease: 'power3.out'
                             });
                         }
@@ -1387,25 +1283,31 @@ function About() {
                             __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(imageContainer, {
                                 opacity: 0,
                                 scale: 0.9,
-                                y: 60,
-                                duration: 0.5
+                                duration: 0.45
                             });
                         }
                     }["About.useCallback[initAnimations].imageSt"]
                 });
                 scrollTriggersRef.current.push(imageSt);
-                // Parallax effect
-                const imageParallax = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
-                    trigger: section,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                    animation: __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].to(imageContainer, {
-                        y: -100,
-                        ease: 'none'
-                    })
-                });
-                scrollTriggersRef.current.push(imageParallax);
+                const mm = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].matchMedia();
+                mm.add("(min-width: 1024px)", {
+                    "About.useCallback[initAnimations]": ()=>{
+                        const imagePin = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
+                            trigger: container,
+                            start: 'top top+=120',
+                            end: 'bottom bottom-=100',
+                            pin: imageContainer,
+                            pinSpacing: false,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true
+                        });
+                        scrollTriggersRef.current.push(imagePin);
+                    }
+                }["About.useCallback[initAnimations]"]);
+                // Add to cleanup
+                return ({
+                    "About.useCallback[initAnimations]": ()=>mm.revert()
+                })["About.useCallback[initAnimations]"];
             }
             // Stats counter animation
             if (statsContainer) {
@@ -1523,23 +1425,24 @@ function About() {
                         className: "absolute top-1/4 -left-32 w-96 h-96 bg-[#00d4ff]/5 rounded-full blur-[120px]"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                        lineNumber: 219,
+                        lineNumber: 229,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "absolute bottom-1/4 -right-32 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px]"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                        lineNumber: 220,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                lineNumber: 218,
+                lineNumber: 228,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: containerRef,
                 className: "container relative max-w-5xl",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid lg:grid-cols-12 gap-12 lg:gap-16 items-start",
@@ -1556,19 +1459,19 @@ function About() {
                                                 className: "w-8 h-px bg-[#00d4ff]"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 230,
+                                                lineNumber: 240,
                                                 columnNumber: 17
                                             }, this),
                                             "About Me"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 239,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                    lineNumber: 228,
+                                    lineNumber: 238,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1578,22 +1481,22 @@ function About() {
                                         "Crafting Intelligent",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 241,
+                                            lineNumber: 251,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-gradient",
+                                            className: "about-highlight",
                                             children: "Solutions"
                                         }, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 242,
+                                            lineNumber: 252,
                                             columnNumber: 15
                                         }, this),
                                         " for Tomorrow"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                    lineNumber: 236,
+                                    lineNumber: 246,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1609,7 +1512,7 @@ function About() {
                                                     children: "Computer Science Engineering"
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 248,
+                                                    lineNumber: 258,
                                                     columnNumber: 28
                                                 }, this),
                                                 " student at ",
@@ -1618,14 +1521,14 @@ function About() {
                                                     children: "Vasavi College of Engineering"
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 249,
+                                                    lineNumber: 259,
                                                     columnNumber: 20
                                                 }, this),
                                                 ", Hyderabad, with a deep passion for the intersection of Artificial Intelligence and the Internet of Things."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 247,
+                                            lineNumber: 257,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1637,7 +1540,7 @@ function About() {
                                                     children: "smarter"
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 255,
+                                                    lineNumber: 265,
                                                     columnNumber: 42
                                                 }, this),
                                                 ", more ",
@@ -1646,7 +1549,7 @@ function About() {
                                                     children: "efficient"
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 255,
+                                                    lineNumber: 265,
                                                     columnNumber: 96
                                                 }, this),
                                                 ", and more ",
@@ -1655,14 +1558,14 @@ function About() {
                                                     children: "impactful"
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 256,
+                                                    lineNumber: 266,
                                                     columnNumber: 26
                                                 }, this),
                                                 ". From building neural networks that predict patterns in complex datasets to designing IoT systems that bridge the physical and digital worlds."
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 253,
+                                            lineNumber: 263,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1670,13 +1573,13 @@ function About() {
                                             children: "I thrive on challenges that push the boundaries of what's possible. My approach combines rigorous engineering principles with creative problem-solving, always keeping the end user and real-world impact at the center of every solution I build."
                                         }, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 260,
+                                            lineNumber: 270,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                    lineNumber: 246,
+                                    lineNumber: 256,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1688,7 +1591,7 @@ function About() {
                                             children: "Core Technologies"
                                         }, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 269,
+                                            lineNumber: 279,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1700,23 +1603,23 @@ function About() {
                                                         children: tech.name
                                                     }, void 0, false, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 286,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, tech.name, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 272,
+                                                    lineNumber: 282,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 270,
+                                            lineNumber: 280,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                    lineNumber: 268,
+                                    lineNumber: 278,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1730,7 +1633,7 @@ function About() {
                                                     children: stat.value
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 289,
+                                                    lineNumber: 299,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1738,120 +1641,139 @@ function About() {
                                                     children: stat.label
                                                 }, void 0, false, {
                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                    lineNumber: 297,
+                                                    lineNumber: 307,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, stat.label, true, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                            lineNumber: 285,
+                                            lineNumber: 295,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                    lineNumber: 283,
+                                    lineNumber: 293,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                            lineNumber: 226,
+                            lineNumber: 236,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "lg:col-span-5 order-1 lg:order-2",
+                            className: "lg:col-span-5 order-1 lg:order-2 relative py-12 md:py-20",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 ref: imageContainerRef,
-                                className: "relative aspect-[4/5] rounded-3xl overflow-hidden",
+                                className: "relative aspect-[4/5] rounded-3xl overflow-hidden w-full max-w-[420px] mx-auto z-10 will-change-transform",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "absolute inset-0 bg-gradient-to-br from-[#00d4ff]/20 via-[#0b0d10] to-[#8b5cf6]/20"
                                     }, void 0, false, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                        lineNumber: 310,
+                                        lineNumber: 320,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute inset-0 flex items-center justify-center",
+                                        className: "absolute inset-0 rounded-2xl overflow-hidden border border-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] z-20",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                            src: "/image.jpeg",
+                                            alt: "Kamal Bura portrait",
+                                            fill: true,
+                                            sizes: "(max-width: 1024px) 80vw, 420px",
+                                            className: "object-cover",
+                                            priority: false
+                                        }, void 0, false, {
+                                            fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
+                                            lineNumber: 324,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
+                                        lineNumber: 323,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "absolute inset-0 flex items-center justify-center pointer-events-none z-10",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-40 h-40 rounded-full border border-[#00d4ff]/30 animate-pulse"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 314,
+                                                lineNumber: 336,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "absolute w-56 h-56 rounded-full border border-[#00ffc8]/20 animate-[spin_20s_linear_infinite]"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 315,
+                                                lineNumber: 337,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "absolute w-72 h-72 rounded-full border border-[#8b5cf6]/15 animate-[spin_30s_linear_infinite_reverse]"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 338,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "absolute w-88 h-88 rounded-full border border-white/5"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 317,
+                                                lineNumber: 339,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8] opacity-80 blur-sm"
+                                                className: "absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8] opacity-60 blur-sm"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 320,
+                                                lineNumber: 342,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "absolute w-16 h-16 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8]"
                                             }, void 0, false, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                                lineNumber: 321,
+                                                lineNumber: 343,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                        lineNumber: 313,
+                                        lineNumber: 335,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                                lineNumber: 305,
+                                lineNumber: 315,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                            lineNumber: 304,
+                            lineNumber: 314,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                    lineNumber: 224,
+                    lineNumber: 234,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-                lineNumber: 223,
+                lineNumber: 233,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/AboutSection.tsx",
-        lineNumber: 212,
+        lineNumber: 222,
         columnNumber: 5
     }, this);
 }
-_s(About, "6XAVdJZMntYAYdDQgdMJVZeiZyY=");
+_s(About, "s1gKVcxjYg6vXEJHBwW3LKJg0Ak=");
 _c = About;
 var _c;
 __turbopack_context__.k.register(_c, "About");
@@ -2298,7 +2220,7 @@ function Skills() {
             // Entrance animation - staggered reveal
             const entranceSt = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
                 trigger: section,
-                start: 'top 80%',
+                start: 'top 75%',
                 onEnter: {
                     "Skills.useEffect.entranceSt": ()=>{
                         words.forEach({
@@ -2333,8 +2255,8 @@ function Skills() {
             scrollTriggersRef.current.push(entranceSt);
             const focusSt = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$ScrollTrigger$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ScrollTrigger"].create({
                 trigger: section,
-                start: 'top 70%',
-                end: 'bottom top',
+                start: 'top 60%',
+                end: 'bottom 25%',
                 onEnter: {
                     "Skills.useEffect.focusSt": ()=>setSectionActive(true)
                 }["Skills.useEffect.focusSt"],
@@ -2453,7 +2375,7 @@ function Skills() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         ref: sectionRef,
         id: "skills",
-        className: "relative min-h-screen section-spacing overflow-hidden",
+        className: "relative min-h-screen overflow-hidden pt-16 md:pt-24 pb-16 md:pb-24 scroll-mt-32 md:scroll-mt-40",
         "data-section": "skills",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2652,7 +2574,8 @@ const projects = [
         ],
         color: 'iot',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     },
     {
         id: 2,
@@ -2667,7 +2590,8 @@ const projects = [
         ],
         color: 'systems',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     },
     {
         id: 3,
@@ -2682,7 +2606,8 @@ const projects = [
         ],
         color: 'ai',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     },
     {
         id: 4,
@@ -2696,7 +2621,8 @@ const projects = [
         ],
         color: 'systems',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     },
     {
         id: 5,
@@ -2710,7 +2636,8 @@ const projects = [
         ],
         color: 'ai',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     },
     {
         id: 6,
@@ -2724,7 +2651,8 @@ const projects = [
         ],
         color: 'iot',
         link: '#',
-        github: '#'
+        github: '#',
+        image: undefined
     }
 ];
 const colorMap = {
@@ -2776,9 +2704,9 @@ function Projects() {
             const tl = __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$gsap$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["default"].timeline({
                 scrollTrigger: {
                     trigger: section,
-                    start: 'top top',
+                    start: 'top top+=96',
                     end: {
-                        "Projects.useEffect.tl": ()=>`+=${scrollDistance}`
+                        "Projects.useEffect.tl": ()=>`+=${scrollDistance + 200}`
                     }["Projects.useEffect.tl"],
                     pin: true,
                     scrub: 1,
@@ -2787,8 +2715,13 @@ function Projects() {
                 }
             });
             scrollTriggerRef.current = tl.scrollTrigger || null;
+            // Hold for a moment then scroll
             tl.to(wrapper, {
+                x: 0,
+                duration: 0.05
+            }).to(wrapper, {
                 x: -scrollDistance,
+                duration: 0.95,
                 ease: 'none'
             });
             return ({
@@ -2805,10 +2738,10 @@ function Projects() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         ref: sectionRef,
         id: "projects",
-        className: "relative overflow-hidden section-spacing",
+        className: "relative overflow-hidden pt-36 md:pt-48 pb-10 md:pb-14 scroll-mt-52 md:scroll-mt-72",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute top-0 md:top-0 left-0 right-0 z-20 container pt-12 md:pt-16",
+                className: "container relative z-20 mb-16 md:mb-24",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2816,12 +2749,12 @@ function Projects() {
                             children: "Portfolio"
                         }, void 0, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                            lineNumber: 159,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                        lineNumber: 158,
+                        lineNumber: 167,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
@@ -2835,48 +2768,64 @@ function Projects() {
                                     children: "Projects"
                                 }, void 0, false, {
                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                    lineNumber: 163,
+                                    lineNumber: 172,
                                     columnNumber: 22
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                            lineNumber: 162,
+                            lineNumber: 171,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                        lineNumber: 161,
+                        lineNumber: 170,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                lineNumber: 157,
+                lineNumber: 166,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 ref: containerRef,
-                className: "min-h-[80vh] md:min-h-screen md:h-screen flex items-center pt-40 md:pt-44",
+                className: "min-h-[60vh] md:min-h-[70vh] flex items-start pt-2 md:pt-4",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     ref: wrapperRef,
-                    className: "horizontal-scroll-container pl-[5vw] pr-[10vw] md:pr-[16vw] snap-x snap-mandatory md:snap-none",
+                    className: "horizontal-scroll-container pl-[5vw] pr-[10vw] md:pr-[16vw] snap-x snap-mandatory md:snap-none mt-4 md:mt-6",
                     children: [
                         projects.map((project, index)=>{
                             const colors = colorMap[project.color];
                             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("article", {
-                                className: `project-card glass-card ${colors.glow} transition-shadow duration-500 snap-start`,
+                                className: `project-card glass-card ${colors.glow} transition-shadow duration-500 snap-start flex-shrink-0 w-[85vw] md:w-[60vw] lg:w-[48vw] h-[60vh] md:h-[70vh] relative overflow-hidden mr-6`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: `absolute inset-0 bg-gradient-to-br ${colors.gradient} opacity-50`
                                     }, void 0, false, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 195,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "relative h-full p-6 md:p-8 flex flex-col justify-between z-10",
                                         children: [
+                                            project.image && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "mb-4",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                    src: project.image,
+                                                    alt: project.title,
+                                                    className: "w-full h-40 md:h-48 object-cover rounded-lg"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
+                                                    lineNumber: 203,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
+                                                lineNumber: 202,
+                                                columnNumber: 21
+                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex-grow",
                                                 children: [
@@ -2888,7 +2837,7 @@ function Projects() {
                                                                 children: project.category
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                lineNumber: 195,
+                                                                lineNumber: 209,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2899,13 +2848,13 @@ function Projects() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                lineNumber: 200,
+                                                                lineNumber: 214,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                        lineNumber: 194,
+                                                        lineNumber: 208,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -2913,7 +2862,7 @@ function Projects() {
                                                         children: project.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                        lineNumber: 205,
+                                                        lineNumber: 219,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2921,13 +2870,13 @@ function Projects() {
                                                         children: project.description
                                                     }, void 0, false, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                        lineNumber: 209,
+                                                        lineNumber: 223,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                lineNumber: 193,
+                                                lineNumber: 207,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2940,12 +2889,12 @@ function Projects() {
                                                                 children: tech
                                                             }, tech, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                lineNumber: 219,
+                                                                lineNumber: 233,
                                                                 columnNumber: 25
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 231,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2953,14 +2902,14 @@ function Projects() {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                                 href: project.link,
-                                                                className: "magnetic-btn text-xs md:text-sm py-2 px-3 md:px-4",
+                                                                className: "inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs md:text-sm transition-all duration-300 hover:scale-105 text-[#f4f4f5]",
                                                                 "data-cursor": "View",
                                                                 children: [
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         children: "View Project"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                        lineNumber: 235,
+                                                                        lineNumber: 249,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -2975,18 +2924,18 @@ function Projects() {
                                                                             d: "M14 5l7 7m0 0l-7 7m7-7H3"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                            lineNumber: 242,
+                                                                            lineNumber: 256,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                        lineNumber: 236,
+                                                                        lineNumber: 250,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                lineNumber: 230,
+                                                                lineNumber: 244,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -3003,35 +2952,35 @@ function Projects() {
                                                                         d: "M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                        lineNumber: 262,
+                                                                        lineNumber: 276,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                    lineNumber: 257,
+                                                                    lineNumber: 271,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                                lineNumber: 250,
+                                                                lineNumber: 264,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                        lineNumber: 229,
+                                                        lineNumber: 243,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                                lineNumber: 215,
+                                                lineNumber: 229,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 200,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3040,37 +2989,44 @@ function Projects() {
                                             className: `absolute -top-16 -right-16 w-32 h-32 rounded-full bg-gradient-to-br ${colors.gradient} blur-2xl`
                                         }, void 0, false, {
                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                            lineNumber: 271,
+                                            lineNumber: 285,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                        lineNumber: 270,
+                                        lineNumber: 284,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, project.id, true, {
                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                                lineNumber: 181,
+                                lineNumber: 190,
                                 columnNumber: 15
                             }, this);
                         }),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex-shrink-0 w-[20vw]"
+                            className: "flex-shrink-0 w-[10vw]"
                         }, void 0, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                            lineNumber: 280,
+                            lineNumber: 294,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                    lineNumber: 173,
+                    lineNumber: 182,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                lineNumber: 169,
+                lineNumber: 178,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "h-10 md:h-12"
+            }, void 0, false, {
+                fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
+                lineNumber: 298,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3081,7 +3037,7 @@ function Projects() {
                         children: "Drag to explore"
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                        lineNumber: 286,
+                        lineNumber: 302,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -3096,24 +3052,24 @@ function Projects() {
                             d: "M17 8l4 4m0 0l-4 4m4-4H3"
                         }, void 0, false, {
                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                            lineNumber: 295,
+                            lineNumber: 311,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                        lineNumber: 289,
+                        lineNumber: 305,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-                lineNumber: 285,
+                lineNumber: 301,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ProjectsSection.tsx",
-        lineNumber: 151,
+        lineNumber: 160,
         columnNumber: 5
     }, this);
 }
@@ -3744,15 +3700,15 @@ function Contact() {
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$src$2f$components$2f$ui$2f$TextAnimations$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FadeIn"], {
                                     delay: 0.3,
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-6 mb-10",
+                                        className: "space-y-4 mb-12 mt-8",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-4",
+                                                className: "p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-12 h-12 rounded-xl glass flex items-center justify-center text-[#00d4ff]",
+                                                        className: "w-10 h-10 rounded-full bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff] border border-[#00d4ff]/20",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-3 h-3 bg-[#00d4ff] rounded-sm"
+                                                            className: "w-2.5 h-2.5 bg-[#00d4ff] rounded-full"
                                                         }, void 0, false, {
                                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
                                                             lineNumber: 85,
@@ -3766,7 +3722,7 @@ function Contact() {
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-[#71717a]",
+                                                                className: "text-xs text-[#71717a] uppercase tracking-wider mb-0.5",
                                                                 children: "Location"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
@@ -3774,7 +3730,7 @@ function Contact() {
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-[#f4f4f5]",
+                                                                className: "text-[#f4f4f5] font-medium",
                                                                 children: "Hyderabad, India"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
@@ -3794,12 +3750,12 @@ function Contact() {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-4",
+                                                className: "p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-12 h-12 rounded-xl glass flex items-center justify-center text-[#00ffc8]",
+                                                        className: "w-10 h-10 rounded-full bg-[#00ffc8]/10 flex items-center justify-center text-[#00ffc8] border border-[#00ffc8]/20",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-4 h-2 bg-[#00ffc8] rounded-sm"
+                                                            className: "w-3 h-1.5 bg-[#00ffc8] rounded-sm"
                                                         }, void 0, false, {
                                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
                                                             lineNumber: 95,
@@ -3813,7 +3769,7 @@ function Contact() {
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-[#71717a]",
+                                                                className: "text-xs text-[#71717a] uppercase tracking-wider mb-0.5",
                                                                 children: "Email"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
@@ -3822,7 +3778,7 @@ function Contact() {
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                                                                 href: "mailto:burakamal13@gmail.com",
-                                                                className: "text-[#f4f4f5] hover:text-[#00d4ff] transition-colors",
+                                                                className: "text-[#f4f4f5] font-medium hover:text-[#00d4ff] transition-colors",
                                                                 children: "burakamal13@gmail.com"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
@@ -3842,12 +3798,12 @@ function Contact() {
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex items-center gap-4",
+                                                className: "p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "w-12 h-12 rounded-xl glass flex items-center justify-center text-[#8b5cf6]",
+                                                        className: "w-10 h-10 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center text-[#8b5cf6] border border-[#8b5cf6]/20",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "w-3 h-3 bg-[#8b5cf6] rounded-full"
+                                                            className: "w-2.5 h-2.5 bg-[#8b5cf6] rounded-full animate-pulse"
                                                         }, void 0, false, {
                                                             fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
                                                             lineNumber: 107,
@@ -3861,7 +3817,7 @@ function Contact() {
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-sm text-[#71717a]",
+                                                                className: "text-xs text-[#71717a] uppercase tracking-wider mb-0.5",
                                                                 children: "Availability"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",
@@ -3869,7 +3825,7 @@ function Contact() {
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$ptojects$2f$portfolio$2f$kamal$2d$portfolio$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-[#f4f4f5]",
+                                                                className: "text-[#f4f4f5] font-medium",
                                                                 children: "Open to opportunities"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/ptojects/portfolio/kamal-portfolio/src/components/sections/ContactSection.tsx",

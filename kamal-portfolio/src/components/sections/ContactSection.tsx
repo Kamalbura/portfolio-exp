@@ -79,36 +79,36 @@ export default function Contact() {
 
             {/* Contact details */}
             <FadeIn delay={0.3}>
-              <div className="space-y-6 mb-10">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-[#00d4ff]">
-                    <div className="w-3 h-3 bg-[#00d4ff] rounded-sm" />
+              <div className="space-y-4 mb-12 mt-8">
+                <div className="p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-full bg-[#00d4ff]/10 flex items-center justify-center text-[#00d4ff] border border-[#00d4ff]/20">
+                    <div className="w-2.5 h-2.5 bg-[#00d4ff] rounded-full" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#71717a]">Location</p>
-                    <p className="text-[#f4f4f5]">Hyderabad, India</p>
+                    <p className="text-xs text-[#71717a] uppercase tracking-wider mb-0.5">Location</p>
+                    <p className="text-[#f4f4f5] font-medium">Hyderabad, India</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-[#00ffc8]">
-                    <div className="w-4 h-2 bg-[#00ffc8] rounded-sm" />
+                <div className="p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-full bg-[#00ffc8]/10 flex items-center justify-center text-[#00ffc8] border border-[#00ffc8]/20">
+                    <div className="w-3 h-1.5 bg-[#00ffc8] rounded-sm" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#71717a]">Email</p>
-                    <a href="mailto:burakamal13@gmail.com" className="text-[#f4f4f5] hover:text-[#00d4ff] transition-colors">
+                    <p className="text-xs text-[#71717a] uppercase tracking-wider mb-0.5">Email</p>
+                    <a href="mailto:burakamal13@gmail.com" className="text-[#f4f4f5] font-medium hover:text-[#00d4ff] transition-colors">
                       burakamal13@gmail.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-[#8b5cf6]">
-                    <div className="w-3 h-3 bg-[#8b5cf6] rounded-full" />
+                <div className="p-4 rounded-2xl glass-card flex items-center gap-5 hover:bg-white/5 transition-colors duration-300">
+                  <div className="w-10 h-10 rounded-full bg-[#8b5cf6]/10 flex items-center justify-center text-[#8b5cf6] border border-[#8b5cf6]/20">
+                    <div className="w-2.5 h-2.5 bg-[#8b5cf6] rounded-full animate-pulse" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#71717a]">Availability</p>
-                    <p className="text-[#f4f4f5]">Open to opportunities</p>
+                    <p className="text-xs text-[#71717a] uppercase tracking-wider mb-0.5">Availability</p>
+                    <p className="text-[#f4f4f5] font-medium">Open to opportunities</p>
                   </div>
                 </div>
               </div>

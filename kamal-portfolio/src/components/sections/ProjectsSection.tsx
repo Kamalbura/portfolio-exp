@@ -17,6 +17,7 @@ const projects = [
     color: 'iot',
     link: '#',
     github: '#',
+    image: undefined,
   },
   {
     id: 2,
@@ -27,6 +28,7 @@ const projects = [
     color: 'systems',
     link: '#',
     github: '#',
+    image: undefined,
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ const projects = [
     color: 'ai',
     link: '#',
     github: '#',
+    image: undefined,
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ const projects = [
     color: 'systems',
     link: '#',
     github: '#',
+    image: undefined,
   },
   {
     id: 5,
@@ -57,6 +61,7 @@ const projects = [
     color: 'ai',
     link: '#',
     github: '#',
+    image: undefined,
   },
   {
     id: 6,
@@ -67,6 +72,7 @@ const projects = [
     color: 'iot',
     link: '#',
     github: '#',
+    image: undefined,
   },
 ];
 
@@ -122,8 +128,8 @@ export default function Projects() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top top',
-        end: () => `+=${scrollDistance}`,
+        start: 'top top+=96',
+        end: () => `+=${scrollDistance + 200}`, // Add buffer for hold
         pin: true,
         scrub: 1,
         anticipatePin: 1,
@@ -133,10 +139,13 @@ export default function Projects() {
 
     scrollTriggerRef.current = tl.scrollTrigger || null;
 
-    tl.to(wrapper, {
-      x: -scrollDistance,
-      ease: 'none',
-    });
+    // Hold for a moment then scroll
+    tl.to(wrapper, { x: 0, duration: 0.05 })
+      .to(wrapper, {
+        x: -scrollDistance,
+        duration: 0.95,
+        ease: 'none',
+      });
 
     return () => {
       if (scrollTriggerRef.current) {
@@ -151,10 +160,10 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative overflow-hidden section-spacing"
+      className="relative overflow-hidden pt-36 md:pt-48 pb-10 md:pb-14 scroll-mt-52 md:scroll-mt-72"
     >
       {/* Header - Fixed during scroll */}
-      <div className="absolute top-0 md:top-0 left-0 right-0 z-20 container pt-12 md:pt-16">
+      <div className="container relative z-20 mb-16 md:mb-24">
         <FadeIn>
           <span className="section-label">Portfolio</span>
         </FadeIn>
@@ -168,11 +177,11 @@ export default function Projects() {
       {/* Horizontal scroll container */}
       <div
         ref={containerRef}
-        className="min-h-[80vh] md:min-h-screen md:h-screen flex items-center pt-40 md:pt-44"
+        className="min-h-[60vh] md:min-h-[70vh] flex items-start pt-2 md:pt-4"
       >
         <div
           ref={wrapperRef}
-          className="horizontal-scroll-container pl-[5vw] pr-[10vw] md:pr-[16vw] snap-x snap-mandatory md:snap-none"
+          className="horizontal-scroll-container pl-[5vw] pr-[10vw] md:pr-[16vw] snap-x snap-mandatory md:snap-none mt-4 md:mt-6"
         >
           {projects.map((project, index) => {
             const colors = colorMap[project.color as keyof typeof colorMap];
@@ -180,7 +189,7 @@ export default function Projects() {
             return (
               <article
                 key={project.id}
-                className={`project-card glass-card ${colors.glow} transition-shadow duration-500 snap-start`}
+                className={`project-card glass-card ${colors.glow} transition-shadow duration-500 snap-start flex-shrink-0 w-[85vw] md:w-[60vw] lg:w-[48vw] h-[60vh] md:h-[70vh] relative overflow-hidden mr-6`}
               >
                 {/* Background gradient */}
                 <div
@@ -189,6 +198,11 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="relative h-full p-6 md:p-8 flex flex-col justify-between z-10">
+                  {project.image && (
+                    <div className="mb-4">
+                      <img src={project.image} alt={project.title} className="w-full h-40 md:h-48 object-cover rounded-lg" />
+                    </div>
+                  )}
                   {/* Top section */}
                   <div className="flex-grow">
                     <div className="flex items-center justify-between mb-4 gap-4">
@@ -229,7 +243,7 @@ export default function Projects() {
                     <div className="flex items-center gap-3 md:gap-4">
                       <a
                         href={project.link}
-                        className="magnetic-btn text-xs md:text-sm py-2 px-3 md:px-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs md:text-sm transition-all duration-300 hover:scale-105 text-[#f4f4f5]"
                         data-cursor="View"
                       >
                         <span>View Project</span>
@@ -277,9 +291,11 @@ export default function Projects() {
           })}
 
           {/* End spacer */}
-          <div className="flex-shrink-0 w-[20vw]" />
+          <div className="flex-shrink-0 w-[10vw]" />
         </div>
       </div>
+
+      <div className="h-10 md:h-12" />
 
       {/* Scroll progress indicator */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">

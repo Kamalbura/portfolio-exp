@@ -52,7 +52,7 @@ export default function Navbar() {
     const target = document.querySelector(href);
     if (target && lenis) {
       lenis.scrollTo(target as HTMLElement, {
-        offset: 0,
+        offset: -96,
         duration: 1.5,
       });
     }

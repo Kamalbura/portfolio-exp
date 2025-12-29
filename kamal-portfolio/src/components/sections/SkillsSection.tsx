@@ -170,7 +170,7 @@ export default function Skills() {
     // Entrance animation - staggered reveal
     const entranceSt = ScrollTrigger.create({
       trigger: section,
-      start: 'top 80%',
+      start: 'top 75%',
       onEnter: () => {
         words.forEach((word, i) => {
           const data = wordData[i];
@@ -194,8 +194,8 @@ export default function Skills() {
 
     const focusSt = ScrollTrigger.create({
       trigger: section,
-      start: 'top 70%',
-      end: 'bottom top',
+      start: 'top 60%',
+      end: 'bottom 25%',
       onEnter: () => setSectionActive(true),
       onEnterBack: () => setSectionActive(true),
       onLeave: () => setSectionActive(false),
@@ -295,7 +295,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative min-h-screen section-spacing overflow-hidden"
+      className="relative min-h-screen overflow-hidden pt-16 md:pt-24 pb-16 md:pb-24 scroll-mt-32 md:scroll-mt-40"
       data-section="skills"
     >
       {/* Gradient overlays for depth */}

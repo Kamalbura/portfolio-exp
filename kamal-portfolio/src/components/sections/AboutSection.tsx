@@ -4,6 +4,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ const techStack = [
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphsRef = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -34,6 +36,7 @@ export default function About() {
 
   const initAnimations = useCallback(() => {
     const section = sectionRef.current;
+    const container = containerRef.current;
     const heading = headingRef.current;
     const paragraphs = paragraphsRef.current;
     const imageContainer = imageContainerRef.current;
@@ -105,9 +108,9 @@ export default function About() {
       });
     }
 
-    // Image parallax and reveal
-    if (imageContainer) {
-      gsap.set(imageContainer, { opacity: 0, scale: 0.9, y: 60 });
+    // Image reveal and pin-through scroll to hold the portrait in place
+    if (imageContainer && container) {
+      gsap.set(imageContainer, { opacity: 0, scale: 0.9 });
       
       const imageSt = ScrollTrigger.create({
         trigger: imageContainer,
@@ -116,26 +119,33 @@ export default function About() {
           gsap.to(imageContainer, {
             opacity: 1,
             scale: 1,
-            y: 0,
-            duration: 1.2,
+            duration: 1.1,
             ease: 'power3.out',
           });
         },
         onLeaveBack: () => {
-          gsap.to(imageContainer, { opacity: 0, scale: 0.9, y: 60, duration: 0.5 });
+          gsap.to(imageContainer, { opacity: 0, scale: 0.9, duration: 0.45 });
         },
       });
       scrollTriggersRef.current.push(imageSt);
 
-      // Parallax effect
-      const imageParallax = ScrollTrigger.create({
-        trigger: section,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5,
-        animation: gsap.to(imageContainer, { y: -100, ease: 'none' }),
+      const mm = gsap.matchMedia();
+      
+      mm.add("(min-width: 1024px)", () => {
+        const imagePin = ScrollTrigger.create({
+          trigger: container,
+          start: 'top top+=120',
+          end: 'bottom bottom-=100',
+          pin: imageContainer,
+          pinSpacing: false,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        });
+        scrollTriggersRef.current.push(imagePin);
       });
-      scrollTriggersRef.current.push(imageParallax);
+
+      // Add to cleanup
+      return () => mm.revert();
     }
 
     // Stats counter animation
@@ -220,7 +230,7 @@ export default function About() {
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[#8b5cf6]/5 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container relative max-w-5xl">
+      <div ref={containerRef} className="container relative max-w-5xl">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Content Column */}
           <div className="lg:col-span-7 order-2 lg:order-1">
@@ -239,7 +249,7 @@ export default function About() {
             >
               Crafting Intelligent
               <br />
-              <span className="text-gradient">Solutions</span> for Tomorrow
+              <span className="about-highlight">Solutions</span> for Tomorrow
             </h2>
 
             {/* Paragraphs */}
@@ -301,23 +311,35 @@ export default function About() {
           </div>
 
           {/* Visual Column */}
-          <div className="lg:col-span-5 order-1 lg:order-2">
+          <div className="lg:col-span-5 order-1 lg:order-2 relative py-12 md:py-20">
             <div
               ref={imageContainerRef}
-              className="relative aspect-[4/5] rounded-3xl overflow-hidden"
+              className="relative aspect-[4/5] rounded-3xl overflow-hidden w-full max-w-[420px] mx-auto z-10 will-change-transform"
             >
               {/* Gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#00d4ff]/20 via-[#0b0d10] to-[#8b5cf6]/20" />
-              
-              {/* Animated orbital rings */}
-              <div className="absolute inset-0 flex items-center justify-center">
+
+              {/* Portrait - flush to container and placed above decorative rings */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden border border-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.45)] z-20">
+                <Image
+                  src="/image.jpeg"
+                  alt="Kamal Bura portrait"
+                  fill
+                  sizes="(max-width: 1024px) 80vw, 420px"
+                  className="object-cover"
+                  priority={false}
+                />
+              </div>
+
+              {/* Animated orbital rings - placed behind the portrait */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                 <div className="w-40 h-40 rounded-full border border-[#00d4ff]/30 animate-pulse" />
                 <div className="absolute w-56 h-56 rounded-full border border-[#00ffc8]/20 animate-[spin_20s_linear_infinite]" />
                 <div className="absolute w-72 h-72 rounded-full border border-[#8b5cf6]/15 animate-[spin_30s_linear_infinite_reverse]" />
                 <div className="absolute w-88 h-88 rounded-full border border-white/5" />
-                
-                {/* Center orb */}
-                <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8] opacity-80 blur-sm" />
+
+                {/* Center orb decorative elements (behind portrait) */}
+                <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8] opacity-60 blur-sm" />
                 <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-[#00d4ff] to-[#00ffc8]" />
               </div>
 

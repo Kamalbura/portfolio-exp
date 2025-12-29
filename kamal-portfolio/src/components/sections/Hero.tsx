@@ -167,7 +167,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
           style={{ perspective: '1000px' }}
         >
           <span className="block text-[#f4f4f5]">KAMAL</span>
-            <span className="block text-gradient hero-name-contrast">BURA</span>
+            <span className="block hero-name-muted">BURA</span>
         </h1>
 
         {/* Subtitle */}
@@ -190,7 +190,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 md:gap-6 lg:gap-8 mt-8 md:mt-12">
           <a
             href="#projects"
-            className="magnetic-btn magnetic-btn-primary group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]"
+            className="magnetic-btn hero-cta hero-cta-primary group w-full sm:w-auto"
             data-cursor="View"
             data-cursor-text="View"
           >
@@ -211,7 +211,7 @@ export default function Hero({ isLoaded = true }: HeroProps) {
           </a>
           <a
             href="#contact"
-            className="magnetic-btn group w-full sm:w-auto md:min-w-[220px] lg:min-w-[280px]"
+            className="magnetic-btn hero-cta hero-cta-secondary group w-full sm:w-auto"
             data-cursor="Contact"
             data-cursor-text="Contact"
           >

@@ -15,6 +15,12 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ];
 
+const sectionScrollOffsets: Record<string, number> = {
+  default: 80,
+  projects: 0,
+  skills: 80,
+};
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,9 +51,11 @@ export default function Navbar() {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
+      const sectionId = href.startsWith('#') ? href.slice(1) : href;
+      const offsetY = sectionScrollOffsets[sectionId] ?? sectionScrollOffsets.default;
       gsap.to(window, {
         duration: 1,
-        scrollTo: { y: href, offsetY: 80 },
+        scrollTo: { y: href, offsetY },
         ease: 'power3.inOut',
       });
     }
